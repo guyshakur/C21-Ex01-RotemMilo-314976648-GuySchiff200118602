@@ -20,6 +20,7 @@ namespace BasicFacebookFeatures
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
             // you see this ???
+            // yes i did
         }
     }
 }
