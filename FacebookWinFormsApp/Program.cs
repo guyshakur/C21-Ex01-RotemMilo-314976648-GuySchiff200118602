@@ -18,11 +18,8 @@ namespace BasicFacebookFeatures
             FacebookService.s_UseForamttedToStrings = true;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLoginPage());
-            // you see this ???
-            // yes i did
-            
-            
+            FormLoginPage formLoginPage = new FormLoginPage();
+            formLoginPage.ShowDialog();
         }
     }
 }
