@@ -27,10 +27,20 @@ namespace BasicFacebookFeatures
         {
             profilePicture.ImageLocation = m_LoggedUser.PictureLargeURL;
             this.Text=$"{m_LoggedUser.FirstName} {m_LoggedUser.LastName}";
-            loadPages();
+            loadSelfDetails();
         }
 
-        private void loadPages()
+        private void loadSelfDetails()
+        {
+            labelFirstName.Text += m_LoggedUser.FirstName;
+            labelLastName.Text += m_LoggedUser.LastName;
+            labelEmail.Text += m_LoggedUser.Email;
+            labelGender.Text += m_LoggedUser.Gender.ToString();
+            labelBirthday.Text += m_LoggedUser.Birthday;
+
+        }
+
+        private void loadLikedPages()
         {
             // your code here
         }
@@ -40,5 +50,29 @@ namespace BasicFacebookFeatures
             FacebookService.LogoutWithUI();
             Close();
         }
+
+        private void buttonLikedPages_Click(object sender, EventArgs e)
+        {
+            loadLikedPages();
+        }
+
+        private void buttonFetchPosts_Click(object sender, EventArgs e)
+        {
+            loadPosts();
+        }
+
+        private void loadPosts()
+        {
+            listBoxPosts.Items.Clear();
+                foreach (FacebookWrapper.ObjectModel.Post post in m_LoggedUser.Posts)
+                {
+                    if (post.Message != null)
+                    {
+                        listBoxPosts.Items.Add(post.Message);
+                        post.ReFetch(DynamicWrapper.eLoadOptions.Full);
+                    }
+                }
+            }
+        }
     }
-}
+
