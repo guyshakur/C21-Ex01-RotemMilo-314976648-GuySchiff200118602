@@ -42,7 +42,18 @@ namespace BasicFacebookFeatures
 
         private void loadLikedPages()
         {
-            // your code here
+            listBoxLikedPages.Items.Clear();
+            foreach (Page page in m_LoggedUser.LikedPages)
+            {
+                    
+                    listBoxLikedPages.Items.Add(page.Name);
+                
+            }
+            if(listBoxLikedPages.Items.Count==0)
+            {
+                listBoxLikedPages.Items.Add("There are no liked pages for this user");
+            }
+
         }
 
         private void logOutButton_Click(object sender, EventArgs e)
