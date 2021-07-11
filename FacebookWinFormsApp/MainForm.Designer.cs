@@ -178,7 +178,7 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(415, 380);
+            this.labelEmail.Location = new System.Drawing.Point(39, 371);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(50, 17);
             this.labelEmail.TabIndex = 8;
@@ -187,7 +187,7 @@
             // labelGender
             // 
             this.labelGender.AutoSize = true;
-            this.labelGender.Location = new System.Drawing.Point(415, 352);
+            this.labelGender.Location = new System.Drawing.Point(39, 343);
             this.labelGender.Name = "labelGender";
             this.labelGender.Size = new System.Drawing.Size(64, 17);
             this.labelGender.TabIndex = 7;
@@ -196,7 +196,7 @@
             // labelBirthday
             // 
             this.labelBirthday.AutoSize = true;
-            this.labelBirthday.Location = new System.Drawing.Point(415, 323);
+            this.labelBirthday.Location = new System.Drawing.Point(39, 314);
             this.labelBirthday.Name = "labelBirthday";
             this.labelBirthday.Size = new System.Drawing.Size(70, 17);
             this.labelBirthday.TabIndex = 6;
@@ -205,7 +205,7 @@
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(415, 292);
+            this.labelLastName.Location = new System.Drawing.Point(39, 283);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(84, 17);
             this.labelLastName.TabIndex = 5;
@@ -214,7 +214,7 @@
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(415, 263);
+            this.labelFirstName.Location = new System.Drawing.Point(39, 254);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(84, 17);
             this.labelFirstName.TabIndex = 4;
@@ -233,7 +233,7 @@
             // 
             // profilePicture
             // 
-            this.profilePicture.Location = new System.Drawing.Point(418, 43);
+            this.profilePicture.Location = new System.Drawing.Point(42, 35);
             this.profilePicture.Margin = new System.Windows.Forms.Padding(4);
             this.profilePicture.Name = "profilePicture";
             this.profilePicture.Size = new System.Drawing.Size(221, 186);

@@ -49,7 +49,6 @@ namespace BasicFacebookFeatures
                 MainForm mf = new MainForm(m_LoginUser);
                 this.Hide();
                 mf.ShowDialog();
-                buttonLogin.Text = "Login";
                 this.Show();
             }
             else
