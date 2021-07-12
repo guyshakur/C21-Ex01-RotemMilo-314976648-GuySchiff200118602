@@ -1,6 +1,7 @@
 ﻿using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 using System;
+using Facebook;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,19 +15,19 @@ namespace BasicFacebookFeatures
 {
     public partial class MainForm : Form
     {
-        public FacebookWrapper.ObjectModel.User m_LoggedUser { get; set; }
+        private FacebookWrapper.ObjectModel.User m_LoggedUser { get; set; }
+        private readonly List<object> r_LastPostsCollection = new List<object>();
         public MainForm(FacebookWrapper.ObjectModel.User m_LoginUser)
         {
             m_LoggedUser = m_LoginUser;
             InitializeComponent();
             fetchLoginDetails();
-
         }
 
         public void fetchLoginDetails()
         {
             profilePicture.ImageLocation = m_LoggedUser.PictureLargeURL;
-            this.Text=$"{m_LoggedUser.FirstName} {m_LoggedUser.LastName}";
+            this.Text = $"{m_LoggedUser.FirstName} {m_LoggedUser.LastName}";
             loadSelfDetails();
         }
 
@@ -45,11 +46,11 @@ namespace BasicFacebookFeatures
             listBoxLikedPages.Items.Clear();
             foreach (Page page in m_LoggedUser.LikedPages)
             {
-                    
-                    listBoxLikedPages.Items.Add(page.Name);
-                
+
+                listBoxLikedPages.Items.Add(page.Name);
+
             }
-            if(listBoxLikedPages.Items.Count==0)
+            if (listBoxLikedPages.Items.Count == 0)
             {
                 listBoxLikedPages.Items.Add("There are no liked pages for this user");
             }
@@ -74,16 +75,89 @@ namespace BasicFacebookFeatures
 
         private void loadPosts()
         {
+            m_LoggedUser.ReFetch();
             listBoxPosts.Items.Clear();
-                foreach (FacebookWrapper.ObjectModel.Post post in m_LoggedUser.Posts)
+            listBoxPosts.DisplayMember = "Message";
+            foreach (Post post in m_LoggedUser.Posts)
+            {
+                if (post.Message != null)
                 {
-                    if (post.Message != null)
-                    {
-                        listBoxPosts.Items.Add(post.Message);
-                        post.ReFetch(DynamicWrapper.eLoadOptions.Full);
-                    }
+                    listBoxPosts.Items.Add(post);
+                }
+
+            }
+
+            if (m_LoggedUser.Posts.Count == 0)
+            {
+                MessageBox.Show("No Posts to retrieve.");
+            }
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            searchInPost(listBoxPosts.Text);
+        }
+
+        private void searchInPost(string i_StringToSearch)
+        {
+            if (listBoxPosts.Items.Count != 0)
+            {
+                int id = listBoxPosts.FindString(i_StringToSearch);
+                if (id >= 0)
+                {
+                    listBoxPosts.SetSelected(id, true);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please fetch posts before");
+            }
+        }
+
+        private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Post selected = m_LoggedUser.Posts[listBoxPosts.SelectedIndex];
+            listBoxComments.DisplayMember = "Message";
+            listBoxComments.DataSource = selected.Comments;
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            searchInPost((sender as TextBox)?.Text);
+        }
+
+        private void checkBoxSortPostsByOrder_CheckedChanged(object sender, EventArgs e)
+        {
+            if (listBoxPosts.Items.Count != 0 && (sender as CheckBox)?.Checked == true)
+            {
+                r_LastPostsCollection.Clear();
+                foreach(object obj in listBoxPosts.Items)
+                {
+                    r_LastPostsCollection.Add(obj);
+                }
+
+                listBoxPosts.Sorted = true;
+            }
+            else if(listBoxPosts.Items.Count == 0)
+            {
+                MessageBox.Show("Please fetch posts before");
+            }
+            else
+            {
+                listBoxPosts.Sorted = false;
+                listBoxPosts.Items.Clear();
+                foreach (object obj in r_LastPostsCollection)
+                {
+                    listBoxPosts.Items.Add(obj);
                 }
             }
         }
+
+        private void listBoxLikedPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Page selected = m_LoggedUser.LikedPages[listBoxLikedPages.SelectedIndex];
+            webBrowserPages.Navigate(selected.URL);
+        }
     }
+}
 
