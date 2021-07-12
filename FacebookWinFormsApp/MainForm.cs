@@ -59,7 +59,14 @@ namespace BasicFacebookFeatures
 
         private void logOutButton_Click(object sender, EventArgs e)
         {
+
             FacebookService.LogoutWithUI();
+            FormLoginPage formLoginPage = new FormLoginPage();
+            formLoginPage.m_AppSettings.LastAcsessToken = "";
+            formLoginPage.m_AppSettings.SaveToFile();
+            Hide();
+            formLoginPage.ShowDialog();
+            formLoginPage.m_LoginResult = null;
             Close();
         }
 

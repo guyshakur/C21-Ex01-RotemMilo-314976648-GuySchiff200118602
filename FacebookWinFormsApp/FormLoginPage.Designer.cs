@@ -34,6 +34,7 @@ namespace BasicFacebookFeatures
             this.buttonLogin = new System.Windows.Forms.Button();
             this.PictureLogoBox = new System.Windows.Forms.PictureBox();
             this.rememberMeChecked = new System.Windows.Forms.CheckBox();
+            this.labelLogin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureLogoBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@ namespace BasicFacebookFeatures
             this.buttonLogin.TabIndex = 36;
             this.buttonLogin.UseVisualStyleBackColor = false;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            
             // 
             // PictureLogoBox
             // 
@@ -70,11 +72,20 @@ namespace BasicFacebookFeatures
             this.rememberMeChecked.Text = "Remember Me";
             this.rememberMeChecked.UseVisualStyleBackColor = true;
             // 
+            // labelLogin
+            // 
+            this.labelLogin.AutoSize = true;
+            this.labelLogin.Location = new System.Drawing.Point(139, 4);
+            this.labelLogin.Name = "labelLogin";
+            this.labelLogin.Size = new System.Drawing.Size(0, 13);
+            this.labelLogin.TabIndex = 55;
+            // 
             // FormLoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 324);
+            this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.rememberMeChecked);
             this.Controls.Add(this.PictureLogoBox);
             this.Controls.Add(this.buttonLogin);
@@ -92,6 +103,7 @@ namespace BasicFacebookFeatures
 		private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.PictureBox PictureLogoBox;
         private System.Windows.Forms.CheckBox rememberMeChecked;
+        private System.Windows.Forms.Label labelLogin;
     }
 }
 
