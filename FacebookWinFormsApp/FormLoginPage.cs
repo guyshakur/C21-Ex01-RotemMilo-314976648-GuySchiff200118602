@@ -11,7 +11,6 @@ using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
-    
 
     public partial class FormLoginPage : Form
     {
@@ -48,10 +47,10 @@ namespace BasicFacebookFeatures
             m_AppSettings = new Settings();
             m_AppSettings.RememberUser = rememberMeChecked.Checked;
             m_AppSettings.LastAcsessToken = m_LoginResult.AccessToken;
-           // m_AppSettings.m_LoginUser = m_LoginResult.LoggedInUser;
+            // m_AppSettings.m_LoginUser = m_LoginResult.LoggedInUser;
             m_AppSettings.SaveToFile();
 
-            
+
             if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
             {
                 m_LoginUser = m_LoginResult.LoggedInUser;
@@ -70,22 +69,22 @@ namespace BasicFacebookFeatures
 
         private void login()
         {
-             m_LoginResult = FacebookService.Login(
+            m_LoginResult = FacebookService.Login(
                     /// (This is Desig Patter's App ID. replace it with your own)
                     "226428995869586",
                     /// requested permissions:
                     "email",
-                        "user_posts",
-                        "user_friends",
-                        "user_likes",
-                        "user_photos",
-                        "user_events",
-                        "user_birthday",
-                        "user_location",
-                        "user_gender"
+                       "user_posts",
+                       "user_friends",
+                       "user_likes",
+                       "user_photos",
+                       "user_events",
+                       "user_birthday",
+                       "user_location",
+                       "user_gender"
                     /// add any relevant permissions
                     );
         }
     }
-   
+
 }
