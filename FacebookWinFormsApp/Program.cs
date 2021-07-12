@@ -18,8 +18,29 @@ namespace BasicFacebookFeatures
             FacebookService.s_UseForamttedToStrings = true;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             FormLoginPage formLoginPage = new FormLoginPage();
-            formLoginPage.ShowDialog();
+            formLoginPage.m_AppSettings = Settings.LoadFile();
+        if(formLoginPage.m_AppSettings.RememberUser && !String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken))
+            {
+
+                LoginResult loginResult = new LoginResult();
+                
+
+                 MainForm mf = new MainForm(loginResult.LoggedInUser);
+                //this.Hide();
+                mf.ShowDialog();
+                //this.Show();
+            }*/
+            
+            
+                formLoginPage.ShowDialog();
+            
+           
+                
+            
+                
+            
         }
     }
 }
