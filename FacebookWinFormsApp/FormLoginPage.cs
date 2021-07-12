@@ -14,6 +14,7 @@ namespace BasicFacebookFeatures
 
     public partial class FormLoginPage : Form
     {
+        //ghg
         public Settings m_AppSettings { get; set; }
         private FacebookWrapper.ObjectModel.User m_LoginUser;
         public LoginResult m_LoginResult { get; set; }
