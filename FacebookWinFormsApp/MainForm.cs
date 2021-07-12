@@ -131,14 +131,14 @@ namespace BasicFacebookFeatures
             if (listBoxPosts.Items.Count != 0 && (sender as CheckBox)?.Checked == true)
             {
                 r_LastPostsCollection.Clear();
-                foreach(object obj in listBoxPosts.Items)
+                foreach (object obj in listBoxPosts.Items)
                 {
                     r_LastPostsCollection.Add(obj);
                 }
 
                 listBoxPosts.Sorted = true;
             }
-            else if(listBoxPosts.Items.Count == 0)
+            else if (listBoxPosts.Items.Count == 0)
             {
                 MessageBox.Show("Please fetch posts before");
             }
@@ -157,6 +157,54 @@ namespace BasicFacebookFeatures
         {
             Page selected = m_LoggedUser.LikedPages[listBoxLikedPages.SelectedIndex];
             webBrowserPages.Navigate(selected.URL);
+        }
+
+        private void listBoxPhotos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxPhotos.SelectedItem != null)
+            {
+                pictureBoxPhoto.ImageLocation = (listBoxPhotos.SelectedItem as Photo).PictureNormalURL;
+                pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonFetchAlbums_Click(object sender, EventArgs e)
+        {
+            loadAlbums();
+        }
+
+        private void loadAlbums()
+        {
+            listBoxAlbums.Items.Clear();
+            listBoxAlbums.DisplayMember = "Name";
+            foreach (Album album in m_LoggedUser.Albums)
+            {
+                listBoxAlbums.Items.Add(album);
+            }
+            if (listBoxAlbums.Items.Count == 0)
+            {
+                MessageBox.Show("No Albums to retrieve :(");
+            }
+        }
+
+        private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBoxPhotos.Items.Clear();
+            listBoxPhotos.DisplayMember = "Name";
+            Album albumSelected = listBoxAlbums.SelectedItem as Album;
+            if(albumSelected.Photos !=null)
+            {
+                foreach (Photo photo in albumSelected.Photos)
+                {
+                    listBoxPhotos.Items.Add(photo);
+                }
+            }
+
         }
     }
 }

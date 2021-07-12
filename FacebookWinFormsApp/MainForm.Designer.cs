@@ -32,22 +32,29 @@
         
         private void InitializeComponent()
         {
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
+            this.tabPageAlbums = new System.Windows.Forms.TabPage();
+            this.buttonFetchAlbums = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.listBoxPhotos = new System.Windows.Forms.ListBox();
+            this.listBoxAlbums = new System.Windows.Forms.ListBox();
+            this.pictureBoxPhoto = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.checkBoxSortPostsByOrder = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.checkBoxSortPostsByOrder = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.listBoxComments = new System.Windows.Forms.ListBox();
             this.buttonFetchPosts = new System.Windows.Forms.Button();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
+            this.listBoxComments = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBoxLikedPages = new System.Windows.Forms.ListBox();
             this.buttonLikedPages = new System.Windows.Forms.Button();
             this.webBrowserPages = new System.Windows.Forms.WebBrowser();
-            this.tabControlPages = new System.Windows.Forms.TabControl();
+            this.tabControlAlbums = new System.Windows.Forms.TabControl();
             this.myProfileTab = new System.Windows.Forms.TabPage();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelGender = new System.Windows.Forms.Label();
@@ -56,7 +63,9 @@
             this.labelFirstName = new System.Windows.Forms.Label();
             this.logOutButton = new System.Windows.Forms.Button();
             this.profilePicture = new System.Windows.Forms.PictureBox();
-            this.tabPage4.SuspendLayout();
+            this.tabPageAlbums.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -67,31 +76,103 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControlPages.SuspendLayout();
+            this.tabControlAlbums.SuspendLayout();
             this.myProfileTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabPage4
+            // tabPageAlbums
             // 
-            this.tabPage4.Controls.Add(this.button4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1027, 482);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPageAlbums.Controls.Add(this.buttonFetchAlbums);
+            this.tabPageAlbums.Controls.Add(this.label4);
+            this.tabPageAlbums.Controls.Add(this.label2);
+            this.tabPageAlbums.Controls.Add(this.label1);
+            this.tabPageAlbums.Controls.Add(this.panel1);
+            this.tabPageAlbums.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAlbums.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPageAlbums.Name = "tabPageAlbums";
+            this.tabPageAlbums.Size = new System.Drawing.Size(1027, 482);
+            this.tabPageAlbums.TabIndex = 3;
+            this.tabPageAlbums.Text = "Albums";
+            this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonFetchAlbums
             // 
-            this.button4.Location = new System.Drawing.Point(29, 320);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonFetchAlbums.Location = new System.Drawing.Point(3, 353);
+            this.buttonFetchAlbums.Name = "buttonFetchAlbums";
+            this.buttonFetchAlbums.Size = new System.Drawing.Size(393, 36);
+            this.buttonFetchAlbums.TabIndex = 8;
+            this.buttonFetchAlbums.Text = "Fetch Albums";
+            this.buttonFetchAlbums.UseVisualStyleBackColor = true;
+            this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(870, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Preview";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(529, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Photos";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(121, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Albums";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.listBoxPhotos);
+            this.panel1.Controls.Add(this.listBoxAlbums);
+            this.panel1.Controls.Add(this.pictureBoxPhoto);
+            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1024, 314);
+            this.panel1.TabIndex = 4;
+            // 
+            // listBoxPhotos
+            // 
+            this.listBoxPhotos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxPhotos.FormattingEnabled = true;
+            this.listBoxPhotos.ItemHeight = 16;
+            this.listBoxPhotos.Location = new System.Drawing.Point(396, 0);
+            this.listBoxPhotos.Name = "listBoxPhotos";
+            this.listBoxPhotos.Size = new System.Drawing.Size(298, 314);
+            this.listBoxPhotos.TabIndex = 4;
+            this.listBoxPhotos.SelectedIndexChanged += new System.EventHandler(this.listBoxPhotos_SelectedIndexChanged);
+            // 
+            // listBoxAlbums
+            // 
+            this.listBoxAlbums.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxAlbums.FormattingEnabled = true;
+            this.listBoxAlbums.ItemHeight = 16;
+            this.listBoxAlbums.Location = new System.Drawing.Point(0, 0);
+            this.listBoxAlbums.Name = "listBoxAlbums";
+            this.listBoxAlbums.Size = new System.Drawing.Size(396, 314);
+            this.listBoxAlbums.TabIndex = 1;
+            this.listBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAlbums_SelectedIndexChanged);
+            // 
+            // pictureBoxPhoto
+            // 
+            this.pictureBoxPhoto.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBoxPhoto.Location = new System.Drawing.Point(694, 0);
+            this.pictureBoxPhoto.Name = "pictureBoxPhoto";
+            this.pictureBoxPhoto.Size = new System.Drawing.Size(330, 314);
+            this.pictureBoxPhoto.TabIndex = 3;
+            this.pictureBoxPhoto.TabStop = false;
             // 
             // tabPage3
             // 
@@ -103,17 +184,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Posts";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxSortPostsByOrder
-            // 
-            this.checkBoxSortPostsByOrder.AutoSize = true;
-            this.checkBoxSortPostsByOrder.Location = new System.Drawing.Point(4, 61);
-            this.checkBoxSortPostsByOrder.Name = "checkBoxSortPostsByOrder";
-            this.checkBoxSortPostsByOrder.Size = new System.Drawing.Size(190, 21);
-            this.checkBoxSortPostsByOrder.TabIndex = 51;
-            this.checkBoxSortPostsByOrder.Text = "Sort Post By Name Order";
-            this.checkBoxSortPostsByOrder.UseVisualStyleBackColor = true;
-            this.checkBoxSortPostsByOrder.CheckedChanged += new System.EventHandler(this.checkBoxSortPostsByOrder_CheckedChanged);
             // 
             // splitContainer2
             // 
@@ -135,6 +205,17 @@
             this.splitContainer2.SplitterDistance = 337;
             this.splitContainer2.TabIndex = 52;
             // 
+            // checkBoxSortPostsByOrder
+            // 
+            this.checkBoxSortPostsByOrder.AutoSize = true;
+            this.checkBoxSortPostsByOrder.Location = new System.Drawing.Point(4, 61);
+            this.checkBoxSortPostsByOrder.Name = "checkBoxSortPostsByOrder";
+            this.checkBoxSortPostsByOrder.Size = new System.Drawing.Size(190, 21);
+            this.checkBoxSortPostsByOrder.TabIndex = 51;
+            this.checkBoxSortPostsByOrder.Text = "Sort Post By Name Order";
+            this.checkBoxSortPostsByOrder.UseVisualStyleBackColor = true;
+            this.checkBoxSortPostsByOrder.CheckedChanged += new System.EventHandler(this.checkBoxSortPostsByOrder_CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -153,17 +234,6 @@
             this.textBoxSearch.Size = new System.Drawing.Size(329, 22);
             this.textBoxSearch.TabIndex = 48;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
-            // 
-            // listBoxComments
-            // 
-            this.listBoxComments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxComments.FormattingEnabled = true;
-            this.listBoxComments.ItemHeight = 16;
-            this.listBoxComments.Location = new System.Drawing.Point(0, 0);
-            this.listBoxComments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxComments.Name = "listBoxComments";
-            this.listBoxComments.Size = new System.Drawing.Size(680, 476);
-            this.listBoxComments.TabIndex = 50;
             // 
             // buttonFetchPosts
             // 
@@ -187,6 +257,17 @@
             this.listBoxPosts.Size = new System.Drawing.Size(330, 340);
             this.listBoxPosts.TabIndex = 3;
             this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
+            // 
+            // listBoxComments
+            // 
+            this.listBoxComments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxComments.FormattingEnabled = true;
+            this.listBoxComments.ItemHeight = 16;
+            this.listBoxComments.Location = new System.Drawing.Point(0, 0);
+            this.listBoxComments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxComments.Name = "listBoxComments";
+            this.listBoxComments.Size = new System.Drawing.Size(680, 476);
+            this.listBoxComments.TabIndex = 50;
             // 
             // tabPage2
             // 
@@ -250,18 +331,18 @@
             this.webBrowserPages.Size = new System.Drawing.Size(674, 472);
             this.webBrowserPages.TabIndex = 0;
             // 
-            // tabControlPages
+            // tabControlAlbums
             // 
-            this.tabControlPages.Controls.Add(this.myProfileTab);
-            this.tabControlPages.Controls.Add(this.tabPage2);
-            this.tabControlPages.Controls.Add(this.tabPage3);
-            this.tabControlPages.Controls.Add(this.tabPage4);
-            this.tabControlPages.Location = new System.Drawing.Point(19, 14);
-            this.tabControlPages.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControlPages.Name = "tabControlPages";
-            this.tabControlPages.SelectedIndex = 0;
-            this.tabControlPages.Size = new System.Drawing.Size(1035, 511);
-            this.tabControlPages.TabIndex = 0;
+            this.tabControlAlbums.Controls.Add(this.myProfileTab);
+            this.tabControlAlbums.Controls.Add(this.tabPage2);
+            this.tabControlAlbums.Controls.Add(this.tabPage3);
+            this.tabControlAlbums.Controls.Add(this.tabPageAlbums);
+            this.tabControlAlbums.Location = new System.Drawing.Point(19, 14);
+            this.tabControlAlbums.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControlAlbums.Name = "tabControlAlbums";
+            this.tabControlAlbums.SelectedIndex = 0;
+            this.tabControlAlbums.Size = new System.Drawing.Size(1035, 511);
+            this.tabControlAlbums.TabIndex = 0;
             // 
             // myProfileTab
             // 
@@ -340,7 +421,7 @@
             // 
             // profilePicture
             // 
-            this.profilePicture.Location = new System.Drawing.Point(43, 34);
+            this.profilePicture.Location = new System.Drawing.Point(8, 25);
             this.profilePicture.Margin = new System.Windows.Forms.Padding(4);
             this.profilePicture.Name = "profilePicture";
             this.profilePicture.Size = new System.Drawing.Size(221, 186);
@@ -352,10 +433,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.tabControlPages);
+            this.Controls.Add(this.tabControlAlbums);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
-            this.tabPage4.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.tabPageAlbums.ResumeLayout(false);
+            this.tabPageAlbums.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
@@ -367,7 +452,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabControlPages.ResumeLayout(false);
+            this.tabControlAlbums.ResumeLayout(false);
             this.myProfileTab.ResumeLayout(false);
             this.myProfileTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
@@ -377,13 +462,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TabPage tabPageAlbums;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox listBoxLikedPages;
         private System.Windows.Forms.Button buttonLikedPages;
-        private System.Windows.Forms.TabControl tabControlPages;
+        private System.Windows.Forms.TabControl tabControlAlbums;
         private System.Windows.Forms.TabPage myProfileTab;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelGender;
@@ -401,5 +485,13 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.WebBrowser webBrowserPages;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.PictureBox pictureBoxPhoto;
+        private System.Windows.Forms.ListBox listBoxAlbums;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonFetchAlbums;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBoxPhotos;
     }
 }
