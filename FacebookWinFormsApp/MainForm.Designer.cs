@@ -33,13 +33,16 @@
         private void InitializeComponent()
         {
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.buttonFetchAlbums = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBoxPhotos = new System.Windows.Forms.ListBox();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
+            this.buttonFetchAlbums = new System.Windows.Forms.Button();
+            this.listBoxPhotos = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBoxPhoto = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listBoxPhotosComments = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.checkBoxSortPostsByOrder = new System.Windows.Forms.CheckBox();
@@ -63,12 +66,13 @@
             this.logOutButton = new System.Windows.Forms.Button();
             this.profilePicture = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listBoxEvents = new System.Windows.Forms.ListBox();
             this.buttonFetchEvents = new System.Windows.Forms.Button();
-            this.listBoxPhotosComments = new System.Windows.Forms.ListBox();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.label5 = new System.Windows.Forms.Label();
+            this.listBoxEvents = new System.Windows.Forms.ListBox();
             this.tabPageAlbums.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -84,10 +88,6 @@
             this.myProfileTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPageAlbums
@@ -101,54 +101,30 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
-            // buttonFetchAlbums
+            // splitContainer3
             // 
-            this.buttonFetchAlbums.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonFetchAlbums.Location = new System.Drawing.Point(0, 443);
-            this.buttonFetchAlbums.Name = "buttonFetchAlbums";
-            this.buttonFetchAlbums.Size = new System.Drawing.Size(384, 33);
-            this.buttonFetchAlbums.TabIndex = 8;
-            this.buttonFetchAlbums.Text = "Fetch Albums";
-            this.buttonFetchAlbums.UseVisualStyleBackColor = true;
-            this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer3.Name = "splitContainer3";
             // 
-            // label4
+            // splitContainer3.Panel1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(300, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Preview";
+            this.splitContainer3.Panel1.Controls.Add(this.listBoxAlbums);
+            this.splitContainer3.Panel1.Controls.Add(this.buttonFetchAlbums);
+            this.splitContainer3.Panel1.Controls.Add(this.listBoxPhotos);
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            this.splitContainer3.Panel1.Controls.Add(this.label2);
+            this.splitContainer3.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel1_Paint);
             // 
-            // label2
+            // splitContainer3.Panel2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(155, 227);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 17);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Photos";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(155, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Albums";
-            // 
-            // listBoxPhotos
-            // 
-            this.listBoxPhotos.FormattingEnabled = true;
-            this.listBoxPhotos.ItemHeight = 16;
-            this.listBoxPhotos.Location = new System.Drawing.Point(5, 247);
-            this.listBoxPhotos.Name = "listBoxPhotos";
-            this.listBoxPhotos.Size = new System.Drawing.Size(376, 164);
-            this.listBoxPhotos.TabIndex = 4;
-            this.listBoxPhotos.SelectedIndexChanged += new System.EventHandler(this.listBoxPhotos_SelectedIndexChanged);
+            this.splitContainer3.Panel2.Controls.Add(this.label5);
+            this.splitContainer3.Panel2.Controls.Add(this.pictureBoxPhoto);
+            this.splitContainer3.Panel2.Controls.Add(this.label4);
+            this.splitContainer3.Panel2.Controls.Add(this.listBoxPhotosComments);
+            this.splitContainer3.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel2_Paint);
+            this.splitContainer3.Size = new System.Drawing.Size(1021, 476);
+            this.splitContainer3.SplitterDistance = 384;
+            this.splitContainer3.TabIndex = 9;
             // 
             // listBoxAlbums
             // 
@@ -160,6 +136,55 @@
             this.listBoxAlbums.TabIndex = 1;
             this.listBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAlbums_SelectedIndexChanged);
             // 
+            // buttonFetchAlbums
+            // 
+            this.buttonFetchAlbums.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonFetchAlbums.Location = new System.Drawing.Point(0, 443);
+            this.buttonFetchAlbums.Name = "buttonFetchAlbums";
+            this.buttonFetchAlbums.Size = new System.Drawing.Size(384, 33);
+            this.buttonFetchAlbums.TabIndex = 8;
+            this.buttonFetchAlbums.Text = "Fetch Albums";
+            this.buttonFetchAlbums.UseVisualStyleBackColor = true;
+            this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
+            // 
+            // listBoxPhotos
+            // 
+            this.listBoxPhotos.FormattingEnabled = true;
+            this.listBoxPhotos.ItemHeight = 16;
+            this.listBoxPhotos.Location = new System.Drawing.Point(5, 247);
+            this.listBoxPhotos.Name = "listBoxPhotos";
+            this.listBoxPhotos.Size = new System.Drawing.Size(376, 164);
+            this.listBoxPhotos.TabIndex = 4;
+            this.listBoxPhotos.SelectedIndexChanged += new System.EventHandler(this.listBoxPhotos_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(155, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Albums";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(155, 227);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Photos";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(283, 227);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 17);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Comments";
+            // 
             // pictureBoxPhoto
             // 
             this.pictureBoxPhoto.Location = new System.Drawing.Point(206, 34);
@@ -167,6 +192,24 @@
             this.pictureBoxPhoto.Size = new System.Drawing.Size(218, 185);
             this.pictureBoxPhoto.TabIndex = 3;
             this.pictureBoxPhoto.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(300, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Preview";
+            // 
+            // listBoxPhotosComments
+            // 
+            this.listBoxPhotosComments.FormattingEnabled = true;
+            this.listBoxPhotosComments.ItemHeight = 16;
+            this.listBoxPhotosComments.Location = new System.Drawing.Point(6, 247);
+            this.listBoxPhotosComments.Name = "listBoxPhotosComments";
+            this.listBoxPhotosComments.Size = new System.Drawing.Size(627, 164);
+            this.listBoxPhotosComments.TabIndex = 5;
             // 
             // tabPage3
             // 
@@ -355,13 +398,13 @@
             this.myProfileTab.Padding = new System.Windows.Forms.Padding(4);
             this.myProfileTab.Size = new System.Drawing.Size(1027, 482);
             this.myProfileTab.TabIndex = 0;
-            this.myProfileTab.Text = "My Profile";
+            this.myProfileTab.Text = "Profile";
             this.myProfileTab.UseVisualStyleBackColor = true;
             // 
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(39, 370);
+            this.labelEmail.Location = new System.Drawing.Point(39, 373);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(50, 17);
             this.labelEmail.TabIndex = 8;
@@ -435,18 +478,9 @@
             this.tabPage1.Text = "Events";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // listBoxEvents
-            // 
-            this.listBoxEvents.FormattingEnabled = true;
-            this.listBoxEvents.ItemHeight = 16;
-            this.listBoxEvents.Location = new System.Drawing.Point(20, 24);
-            this.listBoxEvents.Name = "listBoxEvents";
-            this.listBoxEvents.Size = new System.Drawing.Size(645, 260);
-            this.listBoxEvents.TabIndex = 0;
-            // 
             // buttonFetchEvents
             // 
-            this.buttonFetchEvents.Location = new System.Drawing.Point(724, 121);
+            this.buttonFetchEvents.Location = new System.Drawing.Point(681, 196);
             this.buttonFetchEvents.Name = "buttonFetchEvents";
             this.buttonFetchEvents.Size = new System.Drawing.Size(136, 40);
             this.buttonFetchEvents.TabIndex = 1;
@@ -454,48 +488,14 @@
             this.buttonFetchEvents.UseVisualStyleBackColor = true;
             this.buttonFetchEvents.Click += new System.EventHandler(this.buttonFetchEvents_Click);
             // 
-            // listBoxPhotosComments
+            // listBoxEvents
             // 
-            this.listBoxPhotosComments.FormattingEnabled = true;
-            this.listBoxPhotosComments.ItemHeight = 16;
-            this.listBoxPhotosComments.Location = new System.Drawing.Point(6, 247);
-            this.listBoxPhotosComments.Name = "listBoxPhotosComments";
-            this.listBoxPhotosComments.Size = new System.Drawing.Size(627, 164);
-            this.listBoxPhotosComments.TabIndex = 5;
-            // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer3.Name = "splitContainer3";
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.listBoxAlbums);
-            this.splitContainer3.Panel1.Controls.Add(this.buttonFetchAlbums);
-            this.splitContainer3.Panel1.Controls.Add(this.listBoxPhotos);
-            this.splitContainer3.Panel1.Controls.Add(this.label1);
-            this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel1_Paint);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.label5);
-            this.splitContainer3.Panel2.Controls.Add(this.pictureBoxPhoto);
-            this.splitContainer3.Panel2.Controls.Add(this.label4);
-            this.splitContainer3.Panel2.Controls.Add(this.listBoxPhotosComments);
-            this.splitContainer3.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel2_Paint);
-            this.splitContainer3.Size = new System.Drawing.Size(1021, 476);
-            this.splitContainer3.SplitterDistance = 384;
-            this.splitContainer3.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(300, 227);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 17);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Comments";
+            this.listBoxEvents.FormattingEnabled = true;
+            this.listBoxEvents.ItemHeight = 16;
+            this.listBoxEvents.Location = new System.Drawing.Point(26, 18);
+            this.listBoxEvents.Name = "listBoxEvents";
+            this.listBoxEvents.Size = new System.Drawing.Size(624, 180);
+            this.listBoxEvents.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -507,6 +507,12 @@
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabPageAlbums.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            this.splitContainer3.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -524,12 +530,6 @@
             this.myProfileTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel1.PerformLayout();
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            this.splitContainer3.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

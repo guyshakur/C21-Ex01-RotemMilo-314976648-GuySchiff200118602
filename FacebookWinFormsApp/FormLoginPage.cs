@@ -33,7 +33,7 @@ namespace BasicFacebookFeatures
         {
 
             labelLogin.Text = "Login...";
-            login();
+            Login();
             m_AppSettings.LastAcsessToken = m_LoginResult.AccessToken;
             m_AppSettings.RememberUser = rememberMeChecked.Checked;
             m_AppSettings.SaveToFile();
@@ -58,7 +58,7 @@ namespace BasicFacebookFeatures
 
         }
 
-        private void login()
+        public LoginResult Login()
         {
             
             m_LoginResult = FacebookService.Login(
@@ -76,6 +76,7 @@ namespace BasicFacebookFeatures
                         "user_gender"
                     /// add any relevant permissions
                     );
+            return m_LoginResult;
         
         }
 
