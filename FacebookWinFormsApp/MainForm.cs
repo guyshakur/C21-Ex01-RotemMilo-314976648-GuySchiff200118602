@@ -28,10 +28,10 @@ namespace BasicFacebookFeatures
         {
             profilePicture.ImageLocation = m_LoggedUser.PictureLargeURL;
             this.Text = $"{m_LoggedUser.FirstName} {m_LoggedUser.LastName}";
-            loadSelfDetails();
+            fetchSelfDetails();
         }
 
-        private void loadSelfDetails()
+        private void fetchSelfDetails()
         {
             labelFirstName.Text += m_LoggedUser.FirstName;
             labelLastName.Text += m_LoggedUser.LastName;
@@ -41,7 +41,7 @@ namespace BasicFacebookFeatures
 
         }
 
-        private void loadLikedPages()
+        private void fetchLikedPages()
         {
             listBoxLikedPages.Items.Clear();
             foreach (Page page in m_LoggedUser.LikedPages)
@@ -72,15 +72,15 @@ namespace BasicFacebookFeatures
 
         private void buttonLikedPages_Click(object sender, EventArgs e)
         {
-            loadLikedPages();
+            fetchLikedPages();
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
         {
-            loadPosts();
+            fetchPosts();
         }
 
-        private void loadPosts()
+        private void fetchPosts()
         {
             m_LoggedUser.ReFetch();
             listBoxPosts.Items.Clear();
@@ -170,8 +170,14 @@ namespace BasicFacebookFeatures
         {
             if (listBoxPhotos.SelectedItem != null)
             {
-                pictureBoxPhoto.ImageLocation = (listBoxPhotos.SelectedItem as Photo).PictureNormalURL;
-                pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                Photo selectedPhoto = listBoxPhotos.SelectedItem as Photo;
+                if(selectedPhoto!=null)
+                {
+                    pictureBoxPhoto.ImageLocation = selectedPhoto.PictureNormalURL;
+                    pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    listBoxPhotosComments.DataSource = selectedPhoto.Comments;
+                }
+                
             }
         }
 
@@ -182,10 +188,10 @@ namespace BasicFacebookFeatures
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
-            loadAlbums();
+            fetchAlbums();
         }
 
-        private void loadAlbums()
+        private void fetchAlbums()
         {
             listBoxAlbums.Items.Clear();
             listBoxAlbums.DisplayMember = "Name";
@@ -204,13 +210,60 @@ namespace BasicFacebookFeatures
             listBoxPhotos.Items.Clear();
             listBoxPhotos.DisplayMember = "Name";
             Album albumSelected = listBoxAlbums.SelectedItem as Album;
-            if(albumSelected.Photos !=null)
+            try
             {
+
                 foreach (Photo photo in albumSelected.Photos)
                 {
                     listBoxPhotos.Items.Add(photo);
                 }
             }
+            catch(Exception)
+            {
+
+            }
+        }
+
+        private void buttonFetchEvents_Click(object sender, EventArgs e)
+        {
+            fetchEvents();
+        }
+
+        private void fetchEvents()
+        {
+            listBoxEvents.Items.Clear();
+            listBoxEvents.DisplayMember = "Name";
+
+            try
+            {
+                foreach (Event userEvent in m_LoggedUser.Events)
+                {
+                    listBoxEvents.Items.Add(userEvent);
+                }
+                
+                if (m_LoggedUser.Events.Count == 0)
+                {
+                    MessageBox.Show("No Events to retrieve.");
+                }
+            }
+            catch (FacebookOAuthException)
+            {
+                MessageBox.Show("Authentication error. Cannot fetch events for current user from Facebook.");
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer3_Panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
