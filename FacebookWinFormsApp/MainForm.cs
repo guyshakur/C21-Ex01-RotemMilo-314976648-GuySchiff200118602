@@ -56,13 +56,16 @@ namespace BasicFacebookFeatures
             }
 
         }
-
+        
+        
+        
         private void logOutButton_Click(object sender, EventArgs e)
         {
 
             FacebookService.LogoutWithUI();
             FormLoginPage formLoginPage = new FormLoginPage();
             formLoginPage.m_AppSettings.LastAcsessToken = "";
+            formLoginPage.m_AppSettings.RememberUser = false;
             formLoginPage.m_AppSettings.SaveToFile();
             Hide();
             formLoginPage.ShowDialog();
@@ -99,7 +102,7 @@ namespace BasicFacebookFeatures
                 MessageBox.Show("No Posts to retrieve.");
             }
         }
-
+        
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             searchInPost(listBoxPosts.Text);
@@ -181,10 +184,12 @@ namespace BasicFacebookFeatures
             }
         }
 
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
 
         }
+
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {

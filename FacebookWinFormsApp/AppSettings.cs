@@ -9,17 +9,31 @@ using System.Xml.Serialization;
 
 namespace BasicFacebookFeatures
 {
-    public class Settings
+    [Serializable]
+    public sealed class AppSettings
     {
+        private static readonly AppSettings r_AppSettingsInstance = new AppSettings();
         public bool RememberUser { get; set; }
         public String LastAcsessToken { get; set; }
 
-        public Settings()
+        static AppSettings()
         {
-            RememberUser = false;
-            LastAcsessToken = "";
-           
+
         }
+        private AppSettings()
+        {
+            
+        }
+
+        public static AppSettings AppSettingsInstance
+        {
+            get
+            {
+
+                return r_AppSettingsInstance;
+            }
+        }
+
         public void SaveToFile()
         {
             string startupPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Settings.txt");
@@ -32,21 +46,21 @@ namespace BasicFacebookFeatures
 
         }
 
-        public static Settings LoadFile()
+        public static AppSettings LoadFile()
         {
 
-            Settings obj = null;
+            AppSettings obj = null;
             string startupPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Settings.txt");
-            using (Stream stream = new FileStream(@startupPath, FileMode.Open,FileAccess.ReadWrite))
+            using (Stream stream = new FileStream(@startupPath, FileMode.Open, FileAccess.ReadWrite))
             {
-                XmlSerializer serlizer = new XmlSerializer(typeof(Settings));
-                obj = serlizer.Deserialize(stream) as Settings;
-               
+                XmlSerializer serlizer = new XmlSerializer(typeof(AppSettings));
+                obj = serlizer.Deserialize(stream) as AppSettings;
+
             }
-            
+
             return obj;
         }
     }
 
-    
 }
+

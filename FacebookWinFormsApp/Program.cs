@@ -22,29 +22,31 @@ namespace BasicFacebookFeatures
             Application.SetCompatibleTextRenderingDefault(false);
             
             FormLoginPage formLoginPage = new FormLoginPage();
-            formLoginPage.m_AppSettings = Settings.LoadFile();
-            if(formLoginPage.m_AppSettings==null)
+            //formLoginPage.m_AppSettings = Settings.LoadFile();
+            try
             {
-                formLoginPage.ShowDialog();
-            }
-         
+                formLoginPage.m_AppSettings = AppSettings.LoadFile();
+
                 if (!String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken) && formLoginPage.m_AppSettings.RememberUser)
                 {
-                    //formLoginPage.Login();
-
-                    //m_LoginUser = FormLoginPage.s_LoginResult.LoggedInUser;
-                    //buttonLogin.Text = $"Logged in as {loginResult.LoggedInUser.Name}";
-                    //MainForm mf2 = new MainForm(formLoginPage.m_AppSettings.LastAcsessToken);
-                    LoginResult lg = FacebookService.Connect(formLoginPage.m_AppSettings.LastAcsessToken);
-                    MainForm mf = new MainForm(lg.LoggedInUser);
+                    LoginResult loginResult = FacebookService.Connect(formLoginPage.m_AppSettings.LastAcsessToken);
+                    MainForm mf = new MainForm(loginResult.LoggedInUser);
                     mf.ShowDialog();
 
                 }
 
-            else 
+                else
+                {
+                    formLoginPage.ShowDialog();
+                }
+            }
+
+            catch(Exception ex)
             {
                 formLoginPage.ShowDialog();
             }
+
+               
 
 
         }
