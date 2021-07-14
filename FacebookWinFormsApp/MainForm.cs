@@ -75,7 +75,12 @@ namespace BasicFacebookFeatures
 
         private void buttonLikedPages_Click(object sender, EventArgs e)
         {
+            m_LoggedUser.PostStatus("נווווו");
+
+            /*
             fetchLikedPages();
+            */
+
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
