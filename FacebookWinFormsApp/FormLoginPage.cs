@@ -18,13 +18,13 @@ namespace BasicFacebookFeatures
 
     public partial class FormLoginPage : Form
     {
-        public Settings m_AppSettings { get; set; }
+        public AppSettings m_AppSettings { get; set; }
         private FacebookWrapper.ObjectModel.User m_LoginUser;
         public LoginResult m_LoginResult { get; set; }
 
         public FormLoginPage()
         {
-            m_AppSettings = new Settings();
+            m_AppSettings = AppSettings.AppSettingsInstance;
             InitializeComponent();
             FacebookService.s_CollectionLimit = 100;
         }
@@ -34,7 +34,10 @@ namespace BasicFacebookFeatures
 
             labelLogin.Text = "Login...";
             Login();
-            m_AppSettings.LastAcsessToken = m_LoginResult.AccessToken;
+            if(rememberMeChecked.Checked)
+            {
+                m_AppSettings.LastAcsessToken = m_LoginResult.AccessToken;
+            }
             m_AppSettings.RememberUser = rememberMeChecked.Checked;
             m_AppSettings.SaveToFile();
             

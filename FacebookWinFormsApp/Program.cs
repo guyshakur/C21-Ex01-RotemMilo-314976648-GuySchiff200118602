@@ -27,35 +27,36 @@ namespace BasicFacebookFeatures
             Application.SetCompatibleTextRenderingDefault(false);
 
             FormLoginPage formLoginPage = new FormLoginPage();
-            formLoginPage.m_AppSettings = Settings.LoadFile();
-            if (formLoginPage.m_AppSettings == null)
+            try
             {
-                formLoginPage.ShowDialog();
-            }
-
-            if (!String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken) && formLoginPage.m_AppSettings.RememberUser)
-            {
-                //formLoginPage.Login();
-
-                //m_LoginUser = FormLoginPage.s_LoginResult.LoggedInUser;
-                //buttonLogin.Text = $"Logged in as {loginResult.LoggedInUser.Name}";
-                //MainForm mf2 = new MainForm(formLoginPage.m_AppSettings.LastAcsessToken);
-                try
+                formLoginPage.m_AppSettings = AppSettings.LoadFile();
+                if(!String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken) && formLoginPage.m_AppSettings.RememberUser)
                 {
-                    LoginResult lg = FacebookService.Connect(formLoginPage.m_AppSettings.LastAcsessToken);
-                    MainForm mf = new MainForm(lg.LoggedInUser);
-                    mf.ShowDialog();
+                    try
+                    {
+                        LoginResult loginResult = FacebookService.Connect(formLoginPage.m_AppSettings.LastAcsessToken);
+                        MainForm mainForm = new MainForm(loginResult.LoggedInUser);
+                        mainForm.ShowDialog();
+                    }
+                    catch(Exception ex)
+                    {
+                        formLoginPage.ShowDialog();
+                    }
+
+                    
                 }
-                catch (Exception)
+                else
                 {
                     formLoginPage.ShowDialog();
                 }
+                
+                
             }
-
-            else
+            catch(Exception ex)
             {
                 formLoginPage.ShowDialog();
             }
+            
         }
     }
     
