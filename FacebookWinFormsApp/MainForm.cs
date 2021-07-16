@@ -15,36 +15,44 @@ namespace BasicFacebookFeatures
 {
     public partial class MainForm : Form
     {
-        private FacebookWrapper.ObjectModel.User m_LoggedUser { get; set; }
+        private readonly FacebookWrapper.ObjectModel.User r_LoggedUser;
         private readonly List<object> r_LastPostsCollection = new List<object>();
         public MainForm(FacebookWrapper.ObjectModel.User m_LoginUser)
         {
-            m_LoggedUser = m_LoginUser;
+            r_LoggedUser = m_LoginUser;
             InitializeComponent();
             fetchLoginDetails();
         }
 
+        public User LoggedUser
+        {
+            get
+            {
+                return r_LoggedUser;
+            }
+        }
+
         public void fetchLoginDetails()
         {
-            profilePicture.ImageLocation = m_LoggedUser.PictureLargeURL;
-            this.Text = $"{m_LoggedUser.FirstName} {m_LoggedUser.LastName}";
+            pictureBoxProfile.ImageLocation = r_LoggedUser.PictureLargeURL;
+            this.Text = $"{r_LoggedUser.FirstName} {r_LoggedUser.LastName}";
             fetchSelfDetails();
         }
 
         private void fetchSelfDetails()
         {
-            labelFirstName.Text += m_LoggedUser.FirstName;
-            labelLastName.Text += m_LoggedUser.LastName;
-            labelEmail.Text += m_LoggedUser.Email;
-            labelGender.Text += m_LoggedUser.Gender.ToString();
-            labelBirthday.Text += m_LoggedUser.Birthday;
+            labelFirstName.Text += r_LoggedUser.FirstName;
+            labelLastName.Text += r_LoggedUser.LastName;
+            labelEmail.Text += r_LoggedUser.Email;
+            labelGender.Text += r_LoggedUser.Gender.ToString();
+            labelBirthday.Text += r_LoggedUser.Birthday;
 
         }
 
         private void fetchLikedPages()
         {
             listBoxLikedPages.Items.Clear();
-            foreach (Page page in m_LoggedUser.LikedPages)
+            foreach (Page page in r_LoggedUser.LikedPages)
             {
 
                 listBoxLikedPages.Items.Add(page.Name);
@@ -66,7 +74,7 @@ namespace BasicFacebookFeatures
             FormLoginPage formLoginPage = new FormLoginPage();
             formLoginPage.m_AppSettings.LastAcsessToken = "";
             formLoginPage.m_AppSettings.RememberUser = false;
-            formLoginPage.m_AppSettings.SaveToFile();
+            AppSettings.SaveToFile();
             Hide();
             formLoginPage.ShowDialog();
             formLoginPage.m_LoginResult = null;
@@ -75,12 +83,7 @@ namespace BasicFacebookFeatures
 
         private void buttonLikedPages_Click(object sender, EventArgs e)
         {
-            m_LoggedUser.PostStatus("נווווו");
-
-            /*
-            fetchLikedPages();
-            */
-
+            fetchLikedPages();    
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
@@ -90,10 +93,10 @@ namespace BasicFacebookFeatures
 
         private void fetchPosts()
         {
-            m_LoggedUser.ReFetch();
+            r_LoggedUser.ReFetch();
             listBoxPosts.Items.Clear();
             listBoxPosts.DisplayMember = "Message";
-            foreach (Post post in m_LoggedUser.Posts)
+            foreach (Post post in r_LoggedUser.Posts)
             {
                 if (post.Message != null)
                 {
@@ -102,7 +105,7 @@ namespace BasicFacebookFeatures
 
             }
 
-            if (m_LoggedUser.Posts.Count == 0)
+            if (r_LoggedUser.Posts.Count == 0)
             {
                 MessageBox.Show("No Posts to retrieve.");
             }
@@ -131,7 +134,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Post selected = m_LoggedUser.Posts[listBoxPosts.SelectedIndex];
+            Post selected = r_LoggedUser.Posts[listBoxPosts.SelectedIndex];
             listBoxComments.DisplayMember = "Message";
             listBoxComments.DataSource = selected.Comments;
         }
@@ -170,7 +173,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxLikedPages_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Page selected = m_LoggedUser.LikedPages[listBoxLikedPages.SelectedIndex];
+            Page selected = r_LoggedUser.LikedPages[listBoxLikedPages.SelectedIndex];
             webBrowserPages.Navigate(selected.URL);
         }
 
@@ -190,11 +193,6 @@ namespace BasicFacebookFeatures
         }
 
         
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
@@ -205,7 +203,7 @@ namespace BasicFacebookFeatures
         {
             listBoxAlbums.Items.Clear();
             listBoxAlbums.DisplayMember = "Name";
-            foreach (Album album in m_LoggedUser.Albums)
+            foreach (Album album in r_LoggedUser.Albums)
             {
                 listBoxAlbums.Items.Add(album);
             }
@@ -246,12 +244,12 @@ namespace BasicFacebookFeatures
 
             try
             {
-                foreach (Event userEvent in m_LoggedUser.Events)
+                foreach (Event userEvent in r_LoggedUser.Events)
                 {
                     listBoxEvents.Items.Add(userEvent);
                 }
                 
-                if (m_LoggedUser.Events.Count == 0)
+                if (r_LoggedUser.Events.Count == 0)
                 {
                     MessageBox.Show("No Events to retrieve.");
                 }
@@ -262,20 +260,126 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void buttonLike_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (listBoxPhotos.SelectedItem != null)
+                {
+                    Photo photo = (listBoxPhotos.SelectedItem) as Photo;
+                    if (!photo.LikedBy.Contains(r_LoggedUser))
+                    {
+                        photo.Like();
+                    }
+                    else
+                    {
+                        photo.Unlike();
 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("problem has been deteced with liking post. Contact FaceBook administrator.");
+            }
         }
 
-        private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
+        private void buttonPost_Click(object sender, EventArgs e)
         {
-
+            postMessage();
         }
 
-        private void splitContainer3_Panel2_Paint(object sender, PaintEventArgs e)
+        private void postMessage()
         {
-
+            try
+            {
+                r_LoggedUser.PostStatus(textBoxPost.Text);
+                MessageBox.Show("Your post shared sucessfully");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Your post can't be shared. Please contact facebook administrator ");
+            }
+            finally
+            {
+                textBoxPost.Text = string.Empty;
+            }
         }
+
+
+        private void buttonMatch_Click(object sender, EventArgs e)
+        {
+            if(listBoxMatchFriends.SelectedItem!=null)
+            {
+                DatingFeature.Match(r_LoggedUser, listBoxMatchFriends.SelectedItem as User);
+            }
+        }
+
+
+        private void buttonFetchFriends_Click(object sender, EventArgs e)
+        {
+            listBoxFriends.Items.Clear();
+            listBoxMatchFriends.Items.Clear();
+            listBoxFriends.DisplayMember = "Name";
+
+            try
+            {
+                foreach (User friend in r_LoggedUser.Friends)
+                {
+                    listBoxFriends.Items.Add(friend);
+                    listBoxMatchFriends.Items.Add(friend);
+                }
+
+                if (r_LoggedUser.Friends.Count == 0)
+                {
+                    MessageBox.Show("No friends to retrieve.");
+                    //listBoxFriends.Items.Add(r_LoggedUser);
+                    //listBoxMatchFriends.Items.Add(r_LoggedUser);
+                }
+            }
+            catch (FacebookOAuthException)
+            {
+                MessageBox.Show("Authentication error. Cannot fetch friends for current user from Facebook.");
+            }
+        }
+
+        private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            User friend = listBoxFriends.SelectedItem as User;
+            fetchFriendsDetails(friend);
+        }
+        private void fetchFriendsDetails(User i_Friend)
+        {
+            if(i_Friend!=null)
+            {
+                labelFriendFirstName.Text = $"First Name: {r_LoggedUser.FirstName}";
+                labelFriendLastName.Text = $"Last Name: {r_LoggedUser.LastName}";
+                labelFriendEmail.Text = $"Email: {r_LoggedUser.Email}";
+                labelFriendGender.Text = $"Gender: {r_LoggedUser.Gender.ToString()}";
+                labelFriendBirthday.Text = $"Birthday: {r_LoggedUser.Birthday}";
+                pictureBoxFriend.ImageLocation = i_Friend.PictureLargeURL;
+            }
+        }
+
+        private void listBoxMatchFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fetchFriendsDetails(sender as User);
+        }
+
+        private void buttonFindMatches_Click(object sender, EventArgs e)
+        {
+            List<User> matchesList = DatingFeature.FindMatches(r_LoggedUser);
+            if(matchesList != null)
+            {
+                listBoxFindMatches.DataSource = matchesList;
+            }
+        }
+
+        private void listBoxFindMatches_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fetchFriendsDetails(listBoxFindMatches.SelectedItem as User);
+        }
+
     }
 }
 

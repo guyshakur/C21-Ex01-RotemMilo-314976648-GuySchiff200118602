@@ -41,6 +41,7 @@
             this.listBoxPhotos = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonLike = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBoxPhoto = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,18 +59,35 @@
             this.listBoxLikedPages = new System.Windows.Forms.ListBox();
             this.buttonLikedPages = new System.Windows.Forms.Button();
             this.webBrowserPages = new System.Windows.Forms.WebBrowser();
-            this.tabControlAlbums = new System.Windows.Forms.TabControl();
-            this.myProfileTab = new System.Windows.Forms.TabPage();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.textBoxPost = new System.Windows.Forms.TextBox();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelGender = new System.Windows.Forms.Label();
             this.labelBirthday = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.logOutButton = new System.Windows.Forms.Button();
-            this.profilePicture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.buttonFetchEvents = new System.Windows.Forms.Button();
             this.listBoxEvents = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.buttonMatch = new System.Windows.Forms.Button();
+            this.listBoxMatchFriends = new System.Windows.Forms.ListBox();
+            this.listBoxFindMatches = new System.Windows.Forms.ListBox();
+            this.buttonFindMatches = new System.Windows.Forms.Button();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.buttonFetchFriends = new System.Windows.Forms.Button();
+            this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.labelFriendEmail = new System.Windows.Forms.Label();
+            this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
+            this.labelFriendLastName = new System.Windows.Forms.Label();
+            this.labelFriendGender = new System.Windows.Forms.Label();
+            this.labelFriendFirstName = new System.Windows.Forms.Label();
+            this.labelFriendBirthday = new System.Windows.Forms.Label();
             this.tabPageAlbums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -86,10 +104,20 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControlAlbums.SuspendLayout();
-            this.myProfileTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
+            this.tabControl.SuspendLayout();
+            this.tabPageProfile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.Panel2.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageAlbums
@@ -115,15 +143,14 @@
             this.splitContainer3.Panel1.Controls.Add(this.listBoxPhotos);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel1_Paint);
             // 
             // splitContainer3.Panel2
             // 
+            this.splitContainer3.Panel2.Controls.Add(this.buttonLike);
             this.splitContainer3.Panel2.Controls.Add(this.label5);
             this.splitContainer3.Panel2.Controls.Add(this.pictureBoxPhoto);
             this.splitContainer3.Panel2.Controls.Add(this.label4);
             this.splitContainer3.Panel2.Controls.Add(this.listBoxPhotosComments);
-            this.splitContainer3.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel2_Paint);
             this.splitContainer3.Size = new System.Drawing.Size(1021, 476);
             this.splitContainer3.SplitterDistance = 384;
             this.splitContainer3.TabIndex = 9;
@@ -176,7 +203,16 @@
             this.label2.Size = new System.Drawing.Size(52, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Photos";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // buttonLike
+            // 
+            this.buttonLike.Location = new System.Drawing.Point(440, 186);
+            this.buttonLike.Name = "buttonLike";
+            this.buttonLike.Size = new System.Drawing.Size(87, 33);
+            this.buttonLike.TabIndex = 10;
+            this.buttonLike.Text = "Like";
+            this.buttonLike.UseVisualStyleBackColor = true;
+            this.buttonLike.Click += new System.EventHandler(this.buttonLike_Click);
             // 
             // label5
             // 
@@ -189,6 +225,7 @@
             // 
             // pictureBoxPhoto
             // 
+            this.pictureBoxPhoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBoxPhoto.Location = new System.Drawing.Point(206, 34);
             this.pictureBoxPhoto.Name = "pictureBoxPhoto";
             this.pictureBoxPhoto.Size = new System.Drawing.Size(218, 185);
@@ -370,43 +407,64 @@
             this.webBrowserPages.Size = new System.Drawing.Size(674, 472);
             this.webBrowserPages.TabIndex = 0;
             // 
-            // tabControlAlbums
+            // tabControl
             // 
-            this.tabControlAlbums.Controls.Add(this.myProfileTab);
-            this.tabControlAlbums.Controls.Add(this.tabPage2);
-            this.tabControlAlbums.Controls.Add(this.tabPage3);
-            this.tabControlAlbums.Controls.Add(this.tabPageAlbums);
-            this.tabControlAlbums.Controls.Add(this.tabPage1);
-            this.tabControlAlbums.Location = new System.Drawing.Point(19, 14);
-            this.tabControlAlbums.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControlAlbums.Name = "tabControlAlbums";
-            this.tabControlAlbums.SelectedIndex = 0;
-            this.tabControlAlbums.Size = new System.Drawing.Size(1035, 511);
-            this.tabControlAlbums.TabIndex = 0;
+            this.tabControl.Controls.Add(this.tabPageProfile);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPageAlbums);
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Location = new System.Drawing.Point(19, 13);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1035, 511);
+            this.tabControl.TabIndex = 0;
             // 
-            // myProfileTab
+            // tabPageProfile
             // 
-            this.myProfileTab.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.myProfileTab.Controls.Add(this.labelEmail);
-            this.myProfileTab.Controls.Add(this.labelGender);
-            this.myProfileTab.Controls.Add(this.labelBirthday);
-            this.myProfileTab.Controls.Add(this.labelLastName);
-            this.myProfileTab.Controls.Add(this.labelFirstName);
-            this.myProfileTab.Controls.Add(this.logOutButton);
-            this.myProfileTab.Controls.Add(this.profilePicture);
-            this.myProfileTab.Location = new System.Drawing.Point(4, 25);
-            this.myProfileTab.Margin = new System.Windows.Forms.Padding(4);
-            this.myProfileTab.Name = "myProfileTab";
-            this.myProfileTab.Padding = new System.Windows.Forms.Padding(4);
-            this.myProfileTab.Size = new System.Drawing.Size(1027, 482);
-            this.myProfileTab.TabIndex = 0;
-            this.myProfileTab.Text = "Profile";
-            this.myProfileTab.UseVisualStyleBackColor = true;
+            this.tabPageProfile.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.tabPageProfile.Controls.Add(this.buttonPost);
+            this.tabPageProfile.Controls.Add(this.textBoxPost);
+            this.tabPageProfile.Controls.Add(this.labelEmail);
+            this.tabPageProfile.Controls.Add(this.labelGender);
+            this.tabPageProfile.Controls.Add(this.labelBirthday);
+            this.tabPageProfile.Controls.Add(this.labelLastName);
+            this.tabPageProfile.Controls.Add(this.labelFirstName);
+            this.tabPageProfile.Controls.Add(this.logOutButton);
+            this.tabPageProfile.Controls.Add(this.pictureBoxProfile);
+            this.tabPageProfile.Location = new System.Drawing.Point(4, 25);
+            this.tabPageProfile.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPageProfile.Name = "tabPageProfile";
+            this.tabPageProfile.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageProfile.Size = new System.Drawing.Size(1027, 482);
+            this.tabPageProfile.TabIndex = 0;
+            this.tabPageProfile.Text = "Profile";
+            this.tabPageProfile.UseVisualStyleBackColor = true;
+            // 
+            // buttonPost
+            // 
+            this.buttonPost.Location = new System.Drawing.Point(896, 32);
+            this.buttonPost.Name = "buttonPost";
+            this.buttonPost.Size = new System.Drawing.Size(108, 52);
+            this.buttonPost.TabIndex = 10;
+            this.buttonPost.Text = "Post";
+            this.buttonPost.UseVisualStyleBackColor = true;
+            this.buttonPost.Click += new System.EventHandler(this.buttonPost_Click);
+            // 
+            // textBoxPost
+            // 
+            this.textBoxPost.Location = new System.Drawing.Point(264, 32);
+            this.textBoxPost.Multiline = true;
+            this.textBoxPost.Name = "textBoxPost";
+            this.textBoxPost.Size = new System.Drawing.Size(626, 94);
+            this.textBoxPost.TabIndex = 9;
             // 
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(39, 373);
+            this.labelEmail.Location = new System.Drawing.Point(24, 373);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(50, 17);
             this.labelEmail.TabIndex = 8;
@@ -415,7 +473,7 @@
             // labelGender
             // 
             this.labelGender.AutoSize = true;
-            this.labelGender.Location = new System.Drawing.Point(39, 343);
+            this.labelGender.Location = new System.Drawing.Point(24, 343);
             this.labelGender.Name = "labelGender";
             this.labelGender.Size = new System.Drawing.Size(64, 17);
             this.labelGender.TabIndex = 7;
@@ -424,7 +482,7 @@
             // labelBirthday
             // 
             this.labelBirthday.AutoSize = true;
-            this.labelBirthday.Location = new System.Drawing.Point(39, 314);
+            this.labelBirthday.Location = new System.Drawing.Point(24, 314);
             this.labelBirthday.Name = "labelBirthday";
             this.labelBirthday.Size = new System.Drawing.Size(70, 17);
             this.labelBirthday.TabIndex = 6;
@@ -433,7 +491,7 @@
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(39, 283);
+            this.labelLastName.Location = new System.Drawing.Point(24, 283);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(84, 17);
             this.labelLastName.TabIndex = 5;
@@ -442,7 +500,7 @@
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(39, 254);
+            this.labelFirstName.Location = new System.Drawing.Point(24, 254);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(84, 17);
             this.labelFirstName.TabIndex = 4;
@@ -459,14 +517,15 @@
             this.logOutButton.UseVisualStyleBackColor = true;
             this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
             // 
-            // profilePicture
+            // pictureBoxProfile
             // 
-            this.profilePicture.Location = new System.Drawing.Point(8, 25);
-            this.profilePicture.Margin = new System.Windows.Forms.Padding(4);
-            this.profilePicture.Name = "profilePicture";
-            this.profilePicture.Size = new System.Drawing.Size(221, 186);
-            this.profilePicture.TabIndex = 0;
-            this.profilePicture.TabStop = false;
+            this.pictureBoxProfile.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxProfile.Location = new System.Drawing.Point(27, 32);
+            this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxProfile.Name = "pictureBoxProfile";
+            this.pictureBoxProfile.Size = new System.Drawing.Size(221, 186);
+            this.pictureBoxProfile.TabIndex = 0;
+            this.pictureBoxProfile.TabStop = false;
             // 
             // tabPage1
             // 
@@ -482,7 +541,7 @@
             // 
             // buttonFetchEvents
             // 
-            this.buttonFetchEvents.Location = new System.Drawing.Point(681, 196);
+            this.buttonFetchEvents.Location = new System.Drawing.Point(747, 242);
             this.buttonFetchEvents.Name = "buttonFetchEvents";
             this.buttonFetchEvents.Size = new System.Drawing.Size(136, 40);
             this.buttonFetchEvents.TabIndex = 1;
@@ -494,20 +553,191 @@
             // 
             this.listBoxEvents.FormattingEnabled = true;
             this.listBoxEvents.ItemHeight = 16;
-            this.listBoxEvents.Location = new System.Drawing.Point(26, 18);
+            this.listBoxEvents.Location = new System.Drawing.Point(201, 50);
             this.listBoxEvents.Name = "listBoxEvents";
-            this.listBoxEvents.Size = new System.Drawing.Size(624, 180);
+            this.listBoxEvents.Size = new System.Drawing.Size(518, 196);
             this.listBoxEvents.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.splitContainer5);
+            this.tabPage4.Controls.Add(this.splitContainer4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1027, 482);
+            this.tabPage4.TabIndex = 5;
+            this.tabPage4.Text = "Friends";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Location = new System.Drawing.Point(6, 241);
+            this.splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.buttonMatch);
+            this.splitContainer5.Panel1.Controls.Add(this.listBoxMatchFriends);
+            // 
+            // splitContainer5.Panel2
+            // 
+            this.splitContainer5.Panel2.Controls.Add(this.listBoxFindMatches);
+            this.splitContainer5.Panel2.Controls.Add(this.buttonFindMatches);
+            this.splitContainer5.Size = new System.Drawing.Size(1015, 235);
+            this.splitContainer5.SplitterDistance = 338;
+            this.splitContainer5.TabIndex = 4;
+            // 
+            // buttonMatch
+            // 
+            this.buttonMatch.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonMatch.Location = new System.Drawing.Point(0, 199);
+            this.buttonMatch.Name = "buttonMatch";
+            this.buttonMatch.Size = new System.Drawing.Size(338, 36);
+            this.buttonMatch.TabIndex = 1;
+            this.buttonMatch.Text = "Match";
+            this.buttonMatch.UseVisualStyleBackColor = true;
+            this.buttonMatch.Click += new System.EventHandler(this.buttonMatch_Click);
+            // 
+            // listBoxMatchFriends
+            // 
+            this.listBoxMatchFriends.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxMatchFriends.FormattingEnabled = true;
+            this.listBoxMatchFriends.ItemHeight = 16;
+            this.listBoxMatchFriends.Location = new System.Drawing.Point(0, 0);
+            this.listBoxMatchFriends.Name = "listBoxMatchFriends";
+            this.listBoxMatchFriends.Size = new System.Drawing.Size(338, 235);
+            this.listBoxMatchFriends.TabIndex = 0;
+            this.listBoxMatchFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxMatchFriends_SelectedIndexChanged);
+            // 
+            // listBoxFindMatches
+            // 
+            this.listBoxFindMatches.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxFindMatches.FormattingEnabled = true;
+            this.listBoxFindMatches.ItemHeight = 16;
+            this.listBoxFindMatches.Location = new System.Drawing.Point(0, 0);
+            this.listBoxFindMatches.Name = "listBoxFindMatches";
+            this.listBoxFindMatches.Size = new System.Drawing.Size(673, 199);
+            this.listBoxFindMatches.TabIndex = 1;
+            this.listBoxFindMatches.SelectedIndexChanged += new System.EventHandler(this.listBoxFindMatches_SelectedIndexChanged);
+            // 
+            // buttonFindMatches
+            // 
+            this.buttonFindMatches.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonFindMatches.Location = new System.Drawing.Point(0, 199);
+            this.buttonFindMatches.Name = "buttonFindMatches";
+            this.buttonFindMatches.Size = new System.Drawing.Size(673, 36);
+            this.buttonFindMatches.TabIndex = 0;
+            this.buttonFindMatches.Text = "Find Matches";
+            this.buttonFindMatches.UseVisualStyleBackColor = true;
+            this.buttonFindMatches.Click += new System.EventHandler(this.buttonFindMatches_Click);
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Location = new System.Drawing.Point(6, 6);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.buttonFetchFriends);
+            this.splitContainer4.Panel1.Controls.Add(this.listBoxFriends);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.labelFriendEmail);
+            this.splitContainer4.Panel2.Controls.Add(this.pictureBoxFriend);
+            this.splitContainer4.Panel2.Controls.Add(this.labelFriendLastName);
+            this.splitContainer4.Panel2.Controls.Add(this.labelFriendGender);
+            this.splitContainer4.Panel2.Controls.Add(this.labelFriendFirstName);
+            this.splitContainer4.Panel2.Controls.Add(this.labelFriendBirthday);
+            this.splitContainer4.Size = new System.Drawing.Size(1015, 220);
+            this.splitContainer4.SplitterDistance = 338;
+            this.splitContainer4.TabIndex = 3;
+            // 
+            // buttonFetchFriends
+            // 
+            this.buttonFetchFriends.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonFetchFriends.Location = new System.Drawing.Point(0, 178);
+            this.buttonFetchFriends.Name = "buttonFetchFriends";
+            this.buttonFetchFriends.Size = new System.Drawing.Size(338, 42);
+            this.buttonFetchFriends.TabIndex = 14;
+            this.buttonFetchFriends.Text = "Fetch Friends";
+            this.buttonFetchFriends.UseVisualStyleBackColor = true;
+            this.buttonFetchFriends.Click += new System.EventHandler(this.buttonFetchFriends_Click);
+            // 
+            // listBoxFriends
+            // 
+            this.listBoxFriends.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxFriends.FormattingEnabled = true;
+            this.listBoxFriends.ItemHeight = 16;
+            this.listBoxFriends.Location = new System.Drawing.Point(0, 0);
+            this.listBoxFriends.Name = "listBoxFriends";
+            this.listBoxFriends.Size = new System.Drawing.Size(338, 220);
+            this.listBoxFriends.TabIndex = 0;
+            this.listBoxFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
+            // 
+            // labelFriendEmail
+            // 
+            this.labelFriendEmail.AutoSize = true;
+            this.labelFriendEmail.Location = new System.Drawing.Point(250, 131);
+            this.labelFriendEmail.Name = "labelFriendEmail";
+            this.labelFriendEmail.Size = new System.Drawing.Size(50, 17);
+            this.labelFriendEmail.TabIndex = 13;
+            this.labelFriendEmail.Text = "Email: ";
+            // 
+            // pictureBoxFriend
+            // 
+            this.pictureBoxFriend.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxFriend.Location = new System.Drawing.Point(62, 10);
+            this.pictureBoxFriend.Name = "pictureBoxFriend";
+            this.pictureBoxFriend.Size = new System.Drawing.Size(144, 140);
+            this.pictureBoxFriend.TabIndex = 1;
+            this.pictureBoxFriend.TabStop = false;
+            // 
+            // labelFriendLastName
+            // 
+            this.labelFriendLastName.AutoSize = true;
+            this.labelFriendLastName.Location = new System.Drawing.Point(250, 41);
+            this.labelFriendLastName.Name = "labelFriendLastName";
+            this.labelFriendLastName.Size = new System.Drawing.Size(84, 17);
+            this.labelFriendLastName.TabIndex = 10;
+            this.labelFriendLastName.Text = "Last Name: ";
+            // 
+            // labelFriendGender
+            // 
+            this.labelFriendGender.AutoSize = true;
+            this.labelFriendGender.Location = new System.Drawing.Point(250, 101);
+            this.labelFriendGender.Name = "labelFriendGender";
+            this.labelFriendGender.Size = new System.Drawing.Size(64, 17);
+            this.labelFriendGender.TabIndex = 12;
+            this.labelFriendGender.Text = "Gender: ";
+            // 
+            // labelFriendFirstName
+            // 
+            this.labelFriendFirstName.AutoSize = true;
+            this.labelFriendFirstName.Location = new System.Drawing.Point(250, 12);
+            this.labelFriendFirstName.Name = "labelFriendFirstName";
+            this.labelFriendFirstName.Size = new System.Drawing.Size(84, 17);
+            this.labelFriendFirstName.TabIndex = 9;
+            this.labelFriendFirstName.Text = "First Name: ";
+            // 
+            // labelFriendBirthday
+            // 
+            this.labelFriendBirthday.AutoSize = true;
+            this.labelFriendBirthday.Location = new System.Drawing.Point(250, 72);
+            this.labelFriendBirthday.Name = "labelFriendBirthday";
+            this.labelFriendBirthday.Size = new System.Drawing.Size(70, 17);
+            this.labelFriendBirthday.TabIndex = 11;
+            this.labelFriendBirthday.Text = "BirthDay: ";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.tabControlAlbums);
+            this.Controls.Add(this.tabControl);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabPageAlbums.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
@@ -527,11 +757,22 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabControlAlbums.ResumeLayout(false);
-            this.myProfileTab.ResumeLayout(false);
-            this.myProfileTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
+            this.tabControl.ResumeLayout(false);
+            this.tabPageProfile.ResumeLayout(false);
+            this.tabPageProfile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -543,15 +784,15 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox listBoxLikedPages;
         private System.Windows.Forms.Button buttonLikedPages;
-        private System.Windows.Forms.TabControl tabControlAlbums;
-        private System.Windows.Forms.TabPage myProfileTab;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPageProfile;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelGender;
         private System.Windows.Forms.Label labelBirthday;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.Button logOutButton;
-        private System.Windows.Forms.PictureBox profilePicture;
+        private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.Button buttonFetchPosts;
         private System.Windows.Forms.ListBox listBoxPosts;
         private System.Windows.Forms.TextBox textBoxSearch;
@@ -574,5 +815,23 @@
         private System.Windows.Forms.ListBox listBoxPhotosComments;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonLike;
+        private System.Windows.Forms.TextBox textBoxPost;
+        private System.Windows.Forms.Button buttonPost;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.Button buttonFetchFriends;
+        private System.Windows.Forms.ListBox listBoxFriends;
+        private System.Windows.Forms.Label labelFriendEmail;
+        private System.Windows.Forms.PictureBox pictureBoxFriend;
+        private System.Windows.Forms.Label labelFriendLastName;
+        private System.Windows.Forms.Label labelFriendGender;
+        private System.Windows.Forms.Label labelFriendFirstName;
+        private System.Windows.Forms.Label labelFriendBirthday;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.Button buttonMatch;
+        private System.Windows.Forms.ListBox listBoxMatchFriends;
+        private System.Windows.Forms.ListBox listBoxFindMatches;
+        private System.Windows.Forms.Button buttonFindMatches;
     }
 }

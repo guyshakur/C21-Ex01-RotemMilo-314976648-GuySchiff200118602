@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace BasicFacebookFeatures
 {
     [Serializable]
     public sealed class AppSettings
     {
-        private static readonly AppSettings r_AppSettingsInstance = new AppSettings();
+        private static readonly AppSettings sr_AppSettings = new AppSettings();
         public bool RememberUser { get; set; }
-        public String LastAcsessToken { get; set; }
+        public string LastAcsessToken { get; set; }
+        private static readonly string sr_fileName = "Settings.txt";
 
         static AppSettings()
         {
@@ -22,45 +16,34 @@ namespace BasicFacebookFeatures
         }
         private AppSettings()
         {
-            
+
         }
 
         public static AppSettings AppSettingsInstance
         {
             get
             {
-
-                return r_AppSettingsInstance;
+                return sr_AppSettings;
             }
         }
 
-        public void SaveToFile()
+        public static string FileName
         {
-            string startupPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Settings.txt");
-
-            using (Stream stream = new FileStream(@startupPath, FileMode.Truncate, FileAccess.ReadWrite))
+            get
             {
-                XmlSerializer serlizer = new XmlSerializer(this.GetType());
-                serlizer.Serialize(stream, this);
+                return sr_fileName;
             }
 
+        }
+
+        public static void SaveToFile()
+        {
+            FileUtils.SaveToFile(AppSettings.FileName, sr_AppSettings);
         }
 
         public static AppSettings LoadFile()
         {
-
-            AppSettings obj = null;
-            string startupPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Settings.txt");
-            using (Stream stream = new FileStream(@startupPath, FileMode.Open, FileAccess.ReadWrite))
-            {
-                XmlSerializer serlizer = new XmlSerializer(typeof(AppSettings));
-                obj = serlizer.Deserialize(stream) as AppSettings;
-
-            }
-
-            return obj;
+            return  FileUtils.LoadFile(AppSettings.FileName, sr_AppSettings) as AppSettings;
         }
     }
-
 }
-

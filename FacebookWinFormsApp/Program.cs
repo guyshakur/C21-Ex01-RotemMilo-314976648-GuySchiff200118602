@@ -30,7 +30,7 @@ namespace BasicFacebookFeatures
             try
             {
                 formLoginPage.m_AppSettings = AppSettings.LoadFile();
-                if(!String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken) && formLoginPage.m_AppSettings.RememberUser)
+                if (!String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken) && formLoginPage.m_AppSettings.RememberUser)
                 {
                     try
                     {
