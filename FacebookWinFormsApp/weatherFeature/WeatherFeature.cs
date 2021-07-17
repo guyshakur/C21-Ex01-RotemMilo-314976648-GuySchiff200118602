@@ -1,24 +1,19 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace BasicFacebookFeatures.weatherFeature
+namespace BasicFacebookFeatures.WeatherFeature
 {
     public static class WeatherFeature
     {
+        private static readonly string sr_PrefixUrl = "http://api.weatherapi.com/v1/current.json?key=653ce11ceb1a4b3ba0195804211707&q=";
+        private static readonly string sr_SuffixUrl = "&aqi=no";
         public static WeatherDetails GetWeatherDetails(string i_Location)
         {
-            WebRequest request = HttpWebRequest.Create($"http://api.weatherapi.com/v1/current.json?key=653ce11ceb1a4b3ba0195804211707&q={i_Location}&aqi=no");
-            WebResponse response = request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string rootStr = reader.ReadToEnd();
-            return JsonConvert.DeserializeObject<WeatherDetails>(rootStr);
+            string url = $"{sr_PrefixUrl}{i_Location}{sr_SuffixUrl}";
+            return JsonUtils.GetApiDetailsFromJsonElement<WeatherDetails>(url);
         }
     }
 }

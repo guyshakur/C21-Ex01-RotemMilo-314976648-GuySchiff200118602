@@ -96,6 +96,8 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="FileUtils.cs" />
     <Compile Include="DatingFeature.cs" />
+    <Compile Include="FinanceFeature\FinanceFeature.cs" />
+    <Compile Include="FinanceFeature\Stock.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +116,7 @@
     <Compile Include="WeatherFeature\Current.cs" />
     <Compile Include="WeatherFeature\Location.cs" />
     <Compile Include="WeatherFeature\WeatherDetails.cs" />
+    <Compile Include="JsonUtils.cs" />
     <Compile Include="WeatherFeature\WeatherFeature.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

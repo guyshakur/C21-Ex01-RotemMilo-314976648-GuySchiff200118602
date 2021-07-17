@@ -38,7 +38,7 @@ namespace BasicFacebookFeatures
                         MainForm mainForm = new MainForm(loginResult.LoggedInUser);
                         mainForm.ShowDialog();
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
                         formLoginPage.ShowDialog();
                     }
@@ -52,7 +52,7 @@ namespace BasicFacebookFeatures
                 
                 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 formLoginPage.ShowDialog();
             }

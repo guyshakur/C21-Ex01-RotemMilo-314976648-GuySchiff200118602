@@ -61,6 +61,8 @@
             this.webBrowserPages = new System.Windows.Forms.WebBrowser();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.pictureBoxWeatherPredict = new System.Windows.Forms.PictureBox();
+            this.labelWeatherDetails = new System.Windows.Forms.Label();
             this.labelLastUpdate = new System.Windows.Forms.Label();
             this.labelTemperatureInFahrnheit = new System.Windows.Forms.Label();
             this.labelTemperatureInCelcius = new System.Windows.Forms.Label();
@@ -95,8 +97,14 @@
             this.labelFriendGender = new System.Windows.Forms.Label();
             this.labelFriendFirstName = new System.Windows.Forms.Label();
             this.labelFriendBirthday = new System.Windows.Forms.Label();
-            this.labelWeatherDetails = new System.Windows.Forms.Label();
-            this.pictureBoxWeatherPredict = new System.Windows.Forms.PictureBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.pictureBoxStock = new System.Windows.Forms.PictureBox();
+            this.labelStockIpo = new System.Windows.Forms.Label();
+            this.labelStockChanges = new System.Windows.Forms.Label();
+            this.buttonFetchStockDetails = new System.Windows.Forms.Button();
+            this.labelStockPrice = new System.Windows.Forms.Label();
+            this.textBoxSearchStock = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabPageAlbums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -115,6 +123,7 @@
             this.splitContainer1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageProfile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWeatherPredict)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -127,7 +136,8 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWeatherPredict)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStock)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageAlbums
@@ -239,6 +249,7 @@
             this.pictureBoxPhoto.Location = new System.Drawing.Point(206, 34);
             this.pictureBoxPhoto.Name = "pictureBoxPhoto";
             this.pictureBoxPhoto.Size = new System.Drawing.Size(218, 185);
+            this.pictureBoxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPhoto.TabIndex = 3;
             this.pictureBoxPhoto.TabStop = false;
             // 
@@ -425,6 +436,7 @@
             this.tabControl.Controls.Add(this.tabPageAlbums);
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Controls.Add(this.tabPage5);
             this.tabControl.Location = new System.Drawing.Point(19, 13);
             this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
@@ -461,6 +473,29 @@
             this.tabPageProfile.TabIndex = 0;
             this.tabPageProfile.Text = "Profile";
             this.tabPageProfile.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxWeatherPredict
+            // 
+            this.pictureBoxWeatherPredict.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxWeatherPredict.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxWeatherPredict.ImageLocation = "";
+            this.pictureBoxWeatherPredict.Location = new System.Drawing.Point(738, 168);
+            this.pictureBoxWeatherPredict.Name = "pictureBoxWeatherPredict";
+            this.pictureBoxWeatherPredict.Size = new System.Drawing.Size(152, 132);
+            this.pictureBoxWeatherPredict.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxWeatherPredict.TabIndex = 20;
+            this.pictureBoxWeatherPredict.TabStop = false;
+            this.pictureBoxWeatherPredict.Visible = false;
+            // 
+            // labelWeatherDetails
+            // 
+            this.labelWeatherDetails.AutoSize = true;
+            this.labelWeatherDetails.Location = new System.Drawing.Point(528, 151);
+            this.labelWeatherDetails.Name = "labelWeatherDetails";
+            this.labelWeatherDetails.Size = new System.Drawing.Size(113, 17);
+            this.labelWeatherDetails.TabIndex = 19;
+            this.labelWeatherDetails.Text = "Weather Details:";
+            this.labelWeatherDetails.Visible = false;
             // 
             // labelLastUpdate
             // 
@@ -522,7 +557,7 @@
             // 
             // buttonFetchWeatherDetails
             // 
-            this.buttonFetchWeatherDetails.Location = new System.Drawing.Point(738, 254);
+            this.buttonFetchWeatherDetails.Location = new System.Drawing.Point(738, 319);
             this.buttonFetchWeatherDetails.Name = "buttonFetchWeatherDetails";
             this.buttonFetchWeatherDetails.Size = new System.Drawing.Size(141, 65);
             this.buttonFetchWeatherDetails.TabIndex = 11;
@@ -535,7 +570,7 @@
             // 
             this.buttonPost.Location = new System.Drawing.Point(896, 32);
             this.buttonPost.Name = "buttonPost";
-            this.buttonPost.Size = new System.Drawing.Size(108, 52);
+            this.buttonPost.Size = new System.Drawing.Size(108, 41);
             this.buttonPost.TabIndex = 10;
             this.buttonPost.Text = "Post";
             this.buttonPost.UseVisualStyleBackColor = true;
@@ -612,6 +647,7 @@
             this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
             this.pictureBoxProfile.Size = new System.Drawing.Size(221, 186);
+            this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxProfile.TabIndex = 0;
             this.pictureBoxProfile.TabStop = false;
             // 
@@ -641,7 +677,7 @@
             // 
             this.listBoxEvents.FormattingEnabled = true;
             this.listBoxEvents.ItemHeight = 16;
-            this.listBoxEvents.Location = new System.Drawing.Point(201, 50);
+            this.listBoxEvents.Location = new System.Drawing.Point(114, 53);
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(518, 196);
             this.listBoxEvents.TabIndex = 0;
@@ -818,26 +854,86 @@
             this.labelFriendBirthday.TabIndex = 11;
             this.labelFriendBirthday.Text = "BirthDay: ";
             // 
-            // labelWeatherDetails
+            // tabPage5
             // 
-            this.labelWeatherDetails.AutoSize = true;
-            this.labelWeatherDetails.Location = new System.Drawing.Point(528, 151);
-            this.labelWeatherDetails.Name = "labelWeatherDetails";
-            this.labelWeatherDetails.Size = new System.Drawing.Size(113, 17);
-            this.labelWeatherDetails.TabIndex = 19;
-            this.labelWeatherDetails.Text = "Weather Details:";
-            this.labelWeatherDetails.Visible = false;
+            this.tabPage5.Controls.Add(this.label6);
+            this.tabPage5.Controls.Add(this.textBoxSearchStock);
+            this.tabPage5.Controls.Add(this.pictureBoxStock);
+            this.tabPage5.Controls.Add(this.labelStockIpo);
+            this.tabPage5.Controls.Add(this.labelStockChanges);
+            this.tabPage5.Controls.Add(this.buttonFetchStockDetails);
+            this.tabPage5.Controls.Add(this.labelStockPrice);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1027, 482);
+            this.tabPage5.TabIndex = 6;
+            this.tabPage5.Text = "Finance";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxWeatherPredict
+            // pictureBoxStock
             // 
-            this.pictureBoxWeatherPredict.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBoxWeatherPredict.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxWeatherPredict.ImageLocation = "";
-            this.pictureBoxWeatherPredict.Location = new System.Drawing.Point(738, 168);
-            this.pictureBoxWeatherPredict.Name = "pictureBoxWeatherPredict";
-            this.pictureBoxWeatherPredict.Size = new System.Drawing.Size(67, 68);
-            this.pictureBoxWeatherPredict.TabIndex = 20;
-            this.pictureBoxWeatherPredict.TabStop = false;
+            this.pictureBoxStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxStock.Location = new System.Drawing.Point(726, 139);
+            this.pictureBoxStock.Name = "pictureBoxStock";
+            this.pictureBoxStock.Size = new System.Drawing.Size(166, 138);
+            this.pictureBoxStock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxStock.TabIndex = 13;
+            this.pictureBoxStock.TabStop = false;
+            // 
+            // labelStockIpo
+            // 
+            this.labelStockIpo.AutoSize = true;
+            this.labelStockIpo.Location = new System.Drawing.Point(192, 234);
+            this.labelStockIpo.Name = "labelStockIpo";
+            this.labelStockIpo.Size = new System.Drawing.Size(70, 17);
+            this.labelStockIpo.TabIndex = 12;
+            this.labelStockIpo.Text = "Stock Ipo:";
+            // 
+            // labelStockChanges
+            // 
+            this.labelStockChanges.AutoSize = true;
+            this.labelStockChanges.Location = new System.Drawing.Point(192, 183);
+            this.labelStockChanges.Name = "labelStockChanges";
+            this.labelStockChanges.Size = new System.Drawing.Size(68, 17);
+            this.labelStockChanges.TabIndex = 11;
+            this.labelStockChanges.Text = "Changes:";
+            // 
+            // buttonFetchStockDetails
+            // 
+            this.buttonFetchStockDetails.Location = new System.Drawing.Point(373, 276);
+            this.buttonFetchStockDetails.Name = "buttonFetchStockDetails";
+            this.buttonFetchStockDetails.Size = new System.Drawing.Size(147, 44);
+            this.buttonFetchStockDetails.TabIndex = 9;
+            this.buttonFetchStockDetails.Text = "Fetch Stock Details";
+            this.buttonFetchStockDetails.UseVisualStyleBackColor = true;
+            this.buttonFetchStockDetails.Click += new System.EventHandler(this.buttonFetchStockDetails_Click);
+            // 
+            // labelStockPrice
+            // 
+            this.labelStockPrice.AutoSize = true;
+            this.labelStockPrice.Location = new System.Drawing.Point(192, 139);
+            this.labelStockPrice.Name = "labelStockPrice";
+            this.labelStockPrice.Size = new System.Drawing.Size(47, 17);
+            this.labelStockPrice.TabIndex = 8;
+            this.labelStockPrice.Text = "Stock:";
+            // 
+            // textBoxSearchStock
+            // 
+            this.textBoxSearchStock.Location = new System.Drawing.Point(330, 43);
+            this.textBoxSearchStock.Multiline = true;
+            this.textBoxSearchStock.Name = "textBoxSearchStock";
+            this.textBoxSearchStock.Size = new System.Drawing.Size(339, 33);
+            this.textBoxSearchStock.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(192, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 17);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Search Stock:";
             // 
             // MainForm
             // 
@@ -869,6 +965,7 @@
             this.tabControl.ResumeLayout(false);
             this.tabPageProfile.ResumeLayout(false);
             this.tabPageProfile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWeatherPredict)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -882,7 +979,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWeatherPredict)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStock)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -952,5 +1051,13 @@
         private System.Windows.Forms.Label labelLastUpdate;
         private System.Windows.Forms.Label labelWeatherDetails;
         private System.Windows.Forms.PictureBox pictureBoxWeatherPredict;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.PictureBox pictureBoxStock;
+        private System.Windows.Forms.Label labelStockIpo;
+        private System.Windows.Forms.Label labelStockChanges;
+        private System.Windows.Forms.Button buttonFetchStockDetails;
+        private System.Windows.Forms.Label labelStockPrice;
+        private System.Windows.Forms.TextBox textBoxSearchStock;
+        private System.Windows.Forms.Label label6;
     }
 }

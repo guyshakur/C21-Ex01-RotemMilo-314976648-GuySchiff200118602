@@ -10,7 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BasicFacebookFeatures.weatherFeature;
+using BasicFacebookFeatures.WeatherFeature;
+using BasicFacebookFeatures.FinanceFeature;
 
 namespace BasicFacebookFeatures
 {
@@ -42,7 +43,7 @@ namespace BasicFacebookFeatures
             {
                 fetchWeatherDetails(r_LoggedUser.Location.Name);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 MessageBox.Show("Can't fetch weather details");
             }
@@ -50,7 +51,8 @@ namespace BasicFacebookFeatures
 
         private void fetchWeatherDetails(string i_CityLocation)
         {
-            WeatherDetails weatherDetails = WeatherFeature.GetWeatherDetails(i_CityLocation);
+            
+            WeatherDetails weatherDetails = WeatherFeature.WeatherFeature.GetWeatherDetails(i_CityLocation);
             labelCountry.Text = $"Country: {weatherDetails.Location.Country}";
             labelCountry.Visible = true;
             labelLastUpdate.Text = $"Last Update: {weatherDetails.Location.LocalTime}";
@@ -308,7 +310,7 @@ namespace BasicFacebookFeatures
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("problem has been deteced with liking post. Contact FaceBook administrator.");
             }
@@ -382,11 +384,11 @@ namespace BasicFacebookFeatures
         {
             if(i_Friend!=null)
             {
-                labelFriendFirstName.Text = $"First Name: {r_LoggedUser.FirstName}";
-                labelFriendLastName.Text = $"Last Name: {r_LoggedUser.LastName}";
-                labelFriendEmail.Text = $"Email: {r_LoggedUser.Email}";
-                labelFriendGender.Text = $"Gender: {r_LoggedUser.Gender.ToString()}";
-                labelFriendBirthday.Text = $"Birthday: {r_LoggedUser.Birthday}";
+                labelFriendFirstName.Text = $"First Name: {i_Friend.FirstName}";
+                labelFriendLastName.Text = $"Last Name: {i_Friend.LastName}";
+                labelFriendEmail.Text = $"Email: {i_Friend.Email}";
+                labelFriendGender.Text = $"Gender: {i_Friend.Gender.ToString()}";
+                labelFriendBirthday.Text = $"Birthday: {i_Friend.Birthday}";
                 pictureBoxFriend.ImageLocation = i_Friend.PictureLargeURL;
             }
         }
@@ -416,12 +418,27 @@ namespace BasicFacebookFeatures
             {
                 fetchWeatherDetails(r_LoggedUser.Location.Name);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Can't fetch weather details");
             }
         }
 
+        private void buttonFetchStockDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Stock searchStock = FinanceFeature.FinanceFeature.GetStocksDetails(textBoxSearchStock.Text);
+                labelStockPrice.Text = $"Price: {searchStock.Price.ToString()}";
+                labelStockIpo.Text = $"Stock Ipo: {searchStock.IpoDate}";
+                labelStockChanges.Text = $"Changes: {searchStock.Changes.ToString()}";
+                pictureBoxStock.ImageLocation = searchStock.Image;
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Stock Name");
+            }
+        }
     }
 }
 
