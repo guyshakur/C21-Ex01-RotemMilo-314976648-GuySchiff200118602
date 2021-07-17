@@ -61,6 +61,13 @@
             this.webBrowserPages = new System.Windows.Forms.WebBrowser();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.labelLastUpdate = new System.Windows.Forms.Label();
+            this.labelTemperatureInFahrnheit = new System.Windows.Forms.Label();
+            this.labelTemperatureInCelcius = new System.Windows.Forms.Label();
+            this.labelPredictWeather = new System.Windows.Forms.Label();
+            this.labelCity = new System.Windows.Forms.Label();
+            this.labelCountry = new System.Windows.Forms.Label();
+            this.buttonFetchWeatherDetails = new System.Windows.Forms.Button();
             this.buttonPost = new System.Windows.Forms.Button();
             this.textBoxPost = new System.Windows.Forms.TextBox();
             this.labelEmail = new System.Windows.Forms.Label();
@@ -88,6 +95,8 @@
             this.labelFriendGender = new System.Windows.Forms.Label();
             this.labelFriendFirstName = new System.Windows.Forms.Label();
             this.labelFriendBirthday = new System.Windows.Forms.Label();
+            this.labelWeatherDetails = new System.Windows.Forms.Label();
+            this.pictureBoxWeatherPredict = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -118,6 +127,7 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWeatherPredict)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageAlbums
@@ -425,6 +435,15 @@
             // tabPageProfile
             // 
             this.tabPageProfile.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.tabPageProfile.Controls.Add(this.pictureBoxWeatherPredict);
+            this.tabPageProfile.Controls.Add(this.labelWeatherDetails);
+            this.tabPageProfile.Controls.Add(this.labelLastUpdate);
+            this.tabPageProfile.Controls.Add(this.labelTemperatureInFahrnheit);
+            this.tabPageProfile.Controls.Add(this.labelTemperatureInCelcius);
+            this.tabPageProfile.Controls.Add(this.labelPredictWeather);
+            this.tabPageProfile.Controls.Add(this.labelCity);
+            this.tabPageProfile.Controls.Add(this.labelCountry);
+            this.tabPageProfile.Controls.Add(this.buttonFetchWeatherDetails);
             this.tabPageProfile.Controls.Add(this.buttonPost);
             this.tabPageProfile.Controls.Add(this.textBoxPost);
             this.tabPageProfile.Controls.Add(this.labelEmail);
@@ -442,6 +461,75 @@
             this.tabPageProfile.TabIndex = 0;
             this.tabPageProfile.Text = "Profile";
             this.tabPageProfile.UseVisualStyleBackColor = true;
+            // 
+            // labelLastUpdate
+            // 
+            this.labelLastUpdate.AutoSize = true;
+            this.labelLastUpdate.Location = new System.Drawing.Point(406, 320);
+            this.labelLastUpdate.Name = "labelLastUpdate";
+            this.labelLastUpdate.Size = new System.Drawing.Size(0, 17);
+            this.labelLastUpdate.TabIndex = 18;
+            // 
+            // labelTemperatureInFahrnheit
+            // 
+            this.labelTemperatureInFahrnheit.AutoSize = true;
+            this.labelTemperatureInFahrnheit.Location = new System.Drawing.Point(326, 287);
+            this.labelTemperatureInFahrnheit.Name = "labelTemperatureInFahrnheit";
+            this.labelTemperatureInFahrnheit.Size = new System.Drawing.Size(173, 17);
+            this.labelTemperatureInFahrnheit.TabIndex = 17;
+            this.labelTemperatureInFahrnheit.Text = "Temperture in Fahrenheit:";
+            this.labelTemperatureInFahrnheit.Visible = false;
+            // 
+            // labelTemperatureInCelcius
+            // 
+            this.labelTemperatureInCelcius.AutoSize = true;
+            this.labelTemperatureInCelcius.Location = new System.Drawing.Point(326, 257);
+            this.labelTemperatureInCelcius.Name = "labelTemperatureInCelcius";
+            this.labelTemperatureInCelcius.Size = new System.Drawing.Size(150, 17);
+            this.labelTemperatureInCelcius.TabIndex = 16;
+            this.labelTemperatureInCelcius.Text = "Temperture in Celcius:";
+            this.labelTemperatureInCelcius.Visible = false;
+            // 
+            // labelPredictWeather
+            // 
+            this.labelPredictWeather.AutoSize = true;
+            this.labelPredictWeather.Location = new System.Drawing.Point(326, 228);
+            this.labelPredictWeather.Name = "labelPredictWeather";
+            this.labelPredictWeather.Size = new System.Drawing.Size(56, 17);
+            this.labelPredictWeather.TabIndex = 15;
+            this.labelPredictWeather.Text = "Predict:";
+            this.labelPredictWeather.Visible = false;
+            // 
+            // labelCity
+            // 
+            this.labelCity.AutoSize = true;
+            this.labelCity.Location = new System.Drawing.Point(326, 197);
+            this.labelCity.Name = "labelCity";
+            this.labelCity.Size = new System.Drawing.Size(35, 17);
+            this.labelCity.TabIndex = 14;
+            this.labelCity.Text = "City:";
+            this.labelCity.Visible = false;
+            // 
+            // labelCountry
+            // 
+            this.labelCountry.AutoSize = true;
+            this.labelCountry.Location = new System.Drawing.Point(326, 168);
+            this.labelCountry.Name = "labelCountry";
+            this.labelCountry.Size = new System.Drawing.Size(61, 17);
+            this.labelCountry.TabIndex = 13;
+            this.labelCountry.Text = "Country:";
+            this.labelCountry.Visible = false;
+            // 
+            // buttonFetchWeatherDetails
+            // 
+            this.buttonFetchWeatherDetails.Location = new System.Drawing.Point(738, 254);
+            this.buttonFetchWeatherDetails.Name = "buttonFetchWeatherDetails";
+            this.buttonFetchWeatherDetails.Size = new System.Drawing.Size(141, 65);
+            this.buttonFetchWeatherDetails.TabIndex = 11;
+            this.buttonFetchWeatherDetails.Text = "Refresh Weather Details ";
+            this.buttonFetchWeatherDetails.UseVisualStyleBackColor = true;
+            this.buttonFetchWeatherDetails.Visible = false;
+            this.buttonFetchWeatherDetails.Click += new System.EventHandler(this.buttonFetchWeatherDetails_Click);
             // 
             // buttonPost
             // 
@@ -730,6 +818,27 @@
             this.labelFriendBirthday.TabIndex = 11;
             this.labelFriendBirthday.Text = "BirthDay: ";
             // 
+            // labelWeatherDetails
+            // 
+            this.labelWeatherDetails.AutoSize = true;
+            this.labelWeatherDetails.Location = new System.Drawing.Point(528, 151);
+            this.labelWeatherDetails.Name = "labelWeatherDetails";
+            this.labelWeatherDetails.Size = new System.Drawing.Size(113, 17);
+            this.labelWeatherDetails.TabIndex = 19;
+            this.labelWeatherDetails.Text = "Weather Details:";
+            this.labelWeatherDetails.Visible = false;
+            // 
+            // pictureBoxWeatherPredict
+            // 
+            this.pictureBoxWeatherPredict.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxWeatherPredict.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxWeatherPredict.ImageLocation = "";
+            this.pictureBoxWeatherPredict.Location = new System.Drawing.Point(738, 168);
+            this.pictureBoxWeatherPredict.Name = "pictureBoxWeatherPredict";
+            this.pictureBoxWeatherPredict.Size = new System.Drawing.Size(67, 68);
+            this.pictureBoxWeatherPredict.TabIndex = 20;
+            this.pictureBoxWeatherPredict.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -773,6 +882,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWeatherPredict)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -833,5 +943,14 @@
         private System.Windows.Forms.ListBox listBoxMatchFriends;
         private System.Windows.Forms.ListBox listBoxFindMatches;
         private System.Windows.Forms.Button buttonFindMatches;
+        private System.Windows.Forms.Button buttonFetchWeatherDetails;
+        private System.Windows.Forms.Label labelTemperatureInFahrnheit;
+        private System.Windows.Forms.Label labelTemperatureInCelcius;
+        private System.Windows.Forms.Label labelPredictWeather;
+        private System.Windows.Forms.Label labelCity;
+        private System.Windows.Forms.Label labelCountry;
+        private System.Windows.Forms.Label labelLastUpdate;
+        private System.Windows.Forms.Label labelWeatherDetails;
+        private System.Windows.Forms.PictureBox pictureBoxWeatherPredict;
     }
 }

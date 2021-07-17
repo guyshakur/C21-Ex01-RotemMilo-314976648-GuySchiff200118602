@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BasicFacebookFeatures.weatherFeature;
 
 namespace BasicFacebookFeatures
 {
@@ -37,6 +38,35 @@ namespace BasicFacebookFeatures
             pictureBoxProfile.ImageLocation = r_LoggedUser.PictureLargeURL;
             this.Text = $"{r_LoggedUser.FirstName} {r_LoggedUser.LastName}";
             fetchSelfDetails();
+            try 
+            {
+                fetchWeatherDetails(r_LoggedUser.Location.Name);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Can't fetch weather details");
+            }
+        }
+
+        private void fetchWeatherDetails(string i_CityLocation)
+        {
+            WeatherDetails weatherDetails = WeatherFeature.GetWeatherDetails(i_CityLocation);
+            labelCountry.Text = $"Country: {weatherDetails.Location.Country}";
+            labelCountry.Visible = true;
+            labelLastUpdate.Text = $"Last Update: {weatherDetails.Location.LocalTime}";
+            labelLastUpdate.Visible = true;
+            labelCity.Text = $"City: {weatherDetails.Location.Name}";
+            labelCity.Visible = true;
+            labelPredictWeather.Text = $"Predict: {weatherDetails.Current.Condition.Text}";
+            labelPredictWeather.Visible = true;
+            labelTemperatureInCelcius.Text = $"Temperture in Celcius: {weatherDetails.Current.Temp_C}";
+            labelTemperatureInCelcius.Visible = true;
+            labelTemperatureInFahrnheit.Text = $"Temperture in Fahrenheit: {weatherDetails.Current.Temp_F}";
+            labelTemperatureInFahrnheit.Visible = true;
+            pictureBoxWeatherPredict.ImageLocation = "Http:"+weatherDetails.Current.Condition.Icon;
+            pictureBoxWeatherPredict.Visible = true;
+            buttonFetchWeatherDetails.Visible = true;
+            labelWeatherDetails.Visible = true;
         }
 
         private void fetchSelfDetails()
@@ -378,6 +408,18 @@ namespace BasicFacebookFeatures
         private void listBoxFindMatches_SelectedIndexChanged(object sender, EventArgs e)
         {
             fetchFriendsDetails(listBoxFindMatches.SelectedItem as User);
+        }
+
+        private void buttonFetchWeatherDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                fetchWeatherDetails(r_LoggedUser.Location.Name);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can't fetch weather details");
+            }
         }
 
     }
