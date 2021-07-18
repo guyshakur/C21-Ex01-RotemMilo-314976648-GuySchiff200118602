@@ -99,10 +99,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="CostumText\CustomText.cs" />
-    <Compile Include="FileUtils.cs" />
-    <Compile Include="DatingFeature.cs" />
+    <Compile Include="Utils\AppSettings.cs" />
+    <Compile Include="CustomTextFeature\CustomText.cs" />
+    <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="FinanceFeature\FinanceFeature.cs" />
     <Compile Include="FinanceFeature\Stock.cs" />
     <Compile Include="Forms\ChooseCustomPostForm.cs">
@@ -129,7 +128,7 @@
     <Compile Include="WeatherFeature\Current.cs" />
     <Compile Include="WeatherFeature\Location.cs" />
     <Compile Include="WeatherFeature\WeatherDetails.cs" />
-    <Compile Include="JsonUtils.cs" />
+    <Compile Include="Utils\JsonUtils.cs" />
     <Compile Include="WeatherFeature\WeatherFeature.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -147,7 +146,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -164,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomMessages.txt" />
-    <Content Include="Dating_Matches.txt" />
     <Content Include="Pics\logo.png" />
     <Content Include="Settings.txt" />
   </ItemGroup>

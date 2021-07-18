@@ -508,14 +508,16 @@ namespace BasicFacebookFeatures
             if(listBoxCustomPosts!=null&&listBoxCustomPosts.SelectedItem!=null)
             {
                 string post = listBoxCustomPosts.SelectedItem.ToString();
-                if (CustomMessageBox.ShowOKCancel(post, "Custom Post", "edit Template", "Use template to post") == MessageBoxResult.OK)
+                MessageBoxResult result = (CustomMessageBox.ShowOKCancel(post, "Custom Post", "edit Template", "Use template to post"));
+                
+                if (result == MessageBoxResult.OK)
                 {
                     editPost();
                     //customPostText.Text = post;
                    // customPostText.Focus();
                     listBoxCustomPosts.ClearSelected();
                 }
-                else 
+                else if(result==MessageBoxResult.Cancel)
                 {
                     this.tabControl.SelectedTab = tabPageProfile;
                     this.textBoxPost.Text = post;
