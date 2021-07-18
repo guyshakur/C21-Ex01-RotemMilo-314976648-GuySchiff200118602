@@ -13,9 +13,8 @@ namespace BasicFacebookFeatures.FinanceFeature
 
         public static Stock GetStocksDetails(string i_StockName)
         {
-           string url = $"{sr_PrefixUrl}{i_StockName}{sr_SuffixUrl}";
-          return JsonUtils.GetApiDetailsFromJsonArray<Stock>(url)[0];
-         
+            string url = $"{sr_PrefixUrl}{i_StockName}{sr_SuffixUrl}";
+            return JsonUtils.GetApiDetailsFromJsonArray<Stock>(url)[0];
         }
     }
 }

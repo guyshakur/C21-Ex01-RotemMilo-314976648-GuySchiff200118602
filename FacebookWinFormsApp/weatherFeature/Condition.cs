@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,11 @@ namespace BasicFacebookFeatures.WeatherFeature
 {
     public class Condition
     {
-        private string m_PredictText { get; set; }
-        private string m_PredictIcon { get; set; }
+        private string m_PredictText;
+        private string m_PredictIcon;
 
-        public string Text
+        [JsonProperty("Text")]
+        public string PredictText
         {
             get
             {
@@ -23,7 +25,8 @@ namespace BasicFacebookFeatures.WeatherFeature
             }
         }
 
-        public string Icon
+        [JsonProperty("Icon")]
+        public string PredictIcon
         {
             get
             {

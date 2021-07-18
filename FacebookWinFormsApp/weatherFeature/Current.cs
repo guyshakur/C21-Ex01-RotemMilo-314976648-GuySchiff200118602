@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,12 @@ namespace BasicFacebookFeatures.WeatherFeature
 {
     public class Current
     {
-        public double m_TempertureInCelsius { get; set; }
-        public double m_TempertureInFahrenheit { get; set; }
-        public Condition m_Condition { get; set; }
+        private double m_TempertureInCelsius;
+        private double m_TempertureInFahrenheit;
+        private Condition m_Condition;
 
-        public double Temp_C
+        [JsonProperty("Temp_C")]
+        public double TempertureInCelsius
         {
             get
             {
@@ -23,7 +25,8 @@ namespace BasicFacebookFeatures.WeatherFeature
                 m_TempertureInCelsius = value;
             }
         }
-        public double Temp_F
+        [JsonProperty("Temp_F")]
+        public double TempertureInFahrenheit
         {
             get
             {
@@ -35,6 +38,7 @@ namespace BasicFacebookFeatures.WeatherFeature
             }
         }
 
+        [JsonProperty("Condition")]
         public Condition Condition
         {
             get

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BasicFacebookFeatures.WeatherFeature
     {
         private Location m_Location;
         private Current m_DailyPredict;
-
+        [JsonProperty("Location")]
         public Location Location
         {
             get
@@ -22,7 +23,9 @@ namespace BasicFacebookFeatures.WeatherFeature
                 m_Location = value;
             }
         }
-        public Current Current
+
+        [JsonProperty("Current")]
+        public Current DailyPredict
         {
             get
             {
