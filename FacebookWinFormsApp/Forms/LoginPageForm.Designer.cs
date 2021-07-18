@@ -2,7 +2,7 @@
 
 namespace BasicFacebookFeatures
 {
-    partial class FormLoginPage
+    partial class LoginPageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace BasicFacebookFeatures
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLoginPage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPageForm));
             this.buttonLogin = new System.Windows.Forms.Button();
             this.PictureLogoBox = new System.Windows.Forms.PictureBox();
             this.rememberMeChecked = new System.Windows.Forms.CheckBox();

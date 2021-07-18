@@ -71,6 +71,7 @@
             this.webBrowserPages = new System.Windows.Forms.WebBrowser();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.chooseCustomedPostbtn = new System.Windows.Forms.Button();
             this.pictureBoxWeatherPredict = new System.Windows.Forms.PictureBox();
             this.labelWeatherDetails = new System.Windows.Forms.Label();
             this.labelLastUpdate = new System.Windows.Forms.Label();
@@ -102,17 +103,16 @@
             this.labelStockPrice = new System.Windows.Forms.Label();
             this.customPostPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.listBoxMessages = new System.Windows.Forms.ListBox();
-            this.editMessageButton = new System.Windows.Forms.Button();
-            this.removeMessageButton = new System.Windows.Forms.Button();
-            this.clearAllMessagesButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.messageTextBox = new System.Windows.Forms.TextBox();
-            this.clearTextButton = new System.Windows.Forms.Button();
-            this.saveToListButton = new System.Windows.Forms.Button();
-            this.editTextLbl = new System.Windows.Forms.Label();
             this.listViewMessagesLbl = new System.Windows.Forms.Label();
-            this.customedPostbtn = new System.Windows.Forms.Button();
+            this.listBoxCustomPosts = new System.Windows.Forms.ListBox();
+            this.editCustomPost = new System.Windows.Forms.Button();
+            this.removeFromPostListBtn = new System.Windows.Forms.Button();
+            this.clearAllCustomPostBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.editTextLbl = new System.Windows.Forms.Label();
+            this.customPostText = new System.Windows.Forms.TextBox();
+            this.clearTextButton = new System.Windows.Forms.Button();
+            this.saveCustomPostToListBtn = new System.Windows.Forms.Button();
             tabFriends = new System.Windows.Forms.TabPage();
             tabFriends.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
@@ -173,6 +173,7 @@
             this.buttonFetchFriends.TabIndex = 14;
             this.buttonFetchFriends.Text = "Fetch Friends";
             this.buttonFetchFriends.UseVisualStyleBackColor = true;
+            this.buttonFetchFriends.Click += new System.EventHandler(this.buttonFetchFriends_Click);
             // 
             // splitContainer4
             // 
@@ -580,7 +581,7 @@
             // tabPageProfile
             // 
             this.tabPageProfile.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.tabPageProfile.Controls.Add(this.customedPostbtn);
+            this.tabPageProfile.Controls.Add(this.chooseCustomedPostbtn);
             this.tabPageProfile.Controls.Add(this.pictureBoxWeatherPredict);
             this.tabPageProfile.Controls.Add(this.labelWeatherDetails);
             this.tabPageProfile.Controls.Add(this.labelLastUpdate);
@@ -606,6 +607,20 @@
             this.tabPageProfile.TabIndex = 0;
             this.tabPageProfile.Text = "Profile";
             this.tabPageProfile.UseVisualStyleBackColor = true;
+            // 
+            // chooseCustomedPostbtn
+            // 
+            this.chooseCustomedPostbtn.AutoSize = true;
+            this.chooseCustomedPostbtn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chooseCustomedPostbtn.Location = new System.Drawing.Point(672, 63);
+            this.chooseCustomedPostbtn.Margin = new System.Windows.Forms.Padding(2);
+            this.chooseCustomedPostbtn.Name = "chooseCustomedPostbtn";
+            this.chooseCustomedPostbtn.Size = new System.Drawing.Size(90, 33);
+            this.chooseCustomedPostbtn.TabIndex = 21;
+            this.chooseCustomedPostbtn.Text = "Template Posts";
+            this.chooseCustomedPostbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chooseCustomedPostbtn.UseVisualStyleBackColor = true;
+            this.chooseCustomedPostbtn.Click += new System.EventHandler(this.chooseCustomedPostbtn_Click);
             // 
             // pictureBoxWeatherPredict
             // 
@@ -713,7 +728,7 @@
             this.buttonPost.Location = new System.Drawing.Point(672, 26);
             this.buttonPost.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPost.Name = "buttonPost";
-            this.buttonPost.Size = new System.Drawing.Size(81, 33);
+            this.buttonPost.Size = new System.Drawing.Size(90, 33);
             this.buttonPost.TabIndex = 10;
             this.buttonPost.Text = "Post";
             this.buttonPost.UseVisualStyleBackColor = true;
@@ -936,100 +951,14 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.listViewMessagesLbl);
-            this.panel2.Controls.Add(this.listBoxMessages);
-            this.panel2.Controls.Add(this.editMessageButton);
-            this.panel2.Controls.Add(this.removeMessageButton);
-            this.panel2.Controls.Add(this.clearAllMessagesButton);
+            this.panel2.Controls.Add(this.listBoxCustomPosts);
+            this.panel2.Controls.Add(this.editCustomPost);
+            this.panel2.Controls.Add(this.removeFromPostListBtn);
+            this.panel2.Controls.Add(this.clearAllCustomPostBtn);
             this.panel2.Location = new System.Drawing.Point(427, 7);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(334, 372);
             this.panel2.TabIndex = 7;
-            // 
-            // listBoxMessages
-            // 
-            this.listBoxMessages.FormattingEnabled = true;
-            this.listBoxMessages.Location = new System.Drawing.Point(14, 22);
-            this.listBoxMessages.Name = "listBoxMessages";
-            this.listBoxMessages.Size = new System.Drawing.Size(316, 303);
-            this.listBoxMessages.TabIndex = 8;
-            // 
-            // editMessageButton
-            // 
-            this.editMessageButton.Location = new System.Drawing.Point(135, 349);
-            this.editMessageButton.Name = "editMessageButton";
-            this.editMessageButton.Size = new System.Drawing.Size(75, 23);
-            this.editMessageButton.TabIndex = 7;
-            this.editMessageButton.Text = "Edit";
-            this.editMessageButton.UseVisualStyleBackColor = true;
-            this.editMessageButton.Click += new System.EventHandler(this.editMessageButton_Click);
-            // 
-            // removeMessageButton
-            // 
-            this.removeMessageButton.Location = new System.Drawing.Point(14, 349);
-            this.removeMessageButton.Name = "removeMessageButton";
-            this.removeMessageButton.Size = new System.Drawing.Size(72, 23);
-            this.removeMessageButton.TabIndex = 4;
-            this.removeMessageButton.Text = "Remove";
-            this.removeMessageButton.UseVisualStyleBackColor = true;
-            this.removeMessageButton.Click += new System.EventHandler(this.removeMessageButton_Click);
-            // 
-            // clearAllMessagesButton
-            // 
-            this.clearAllMessagesButton.Location = new System.Drawing.Point(259, 349);
-            this.clearAllMessagesButton.Name = "clearAllMessagesButton";
-            this.clearAllMessagesButton.Size = new System.Drawing.Size(72, 23);
-            this.clearAllMessagesButton.TabIndex = 5;
-            this.clearAllMessagesButton.Text = "Clear List";
-            this.clearAllMessagesButton.UseVisualStyleBackColor = true;
-            this.clearAllMessagesButton.Click += new System.EventHandler(this.clearAllMessagesButton_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.editTextLbl);
-            this.panel1.Controls.Add(this.messageTextBox);
-            this.panel1.Controls.Add(this.clearTextButton);
-            this.panel1.Controls.Add(this.saveToListButton);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(329, 379);
-            this.panel1.TabIndex = 6;
-            // 
-            // messageTextBox
-            // 
-            this.messageTextBox.Location = new System.Drawing.Point(4, 26);
-            this.messageTextBox.Multiline = true;
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(310, 311);
-            this.messageTextBox.TabIndex = 3;
-            // 
-            // clearTextButton
-            // 
-            this.clearTextButton.Location = new System.Drawing.Point(210, 353);
-            this.clearTextButton.Name = "clearTextButton";
-            this.clearTextButton.Size = new System.Drawing.Size(104, 23);
-            this.clearTextButton.TabIndex = 2;
-            this.clearTextButton.Text = "Clear";
-            this.clearTextButton.UseVisualStyleBackColor = true;
-            this.clearTextButton.Click += new System.EventHandler(this.clearTextButton_Click);
-            // 
-            // saveToListButton
-            // 
-            this.saveToListButton.Location = new System.Drawing.Point(3, 353);
-            this.saveToListButton.Name = "saveToListButton";
-            this.saveToListButton.Size = new System.Drawing.Size(104, 23);
-            this.saveToListButton.TabIndex = 1;
-            this.saveToListButton.Text = "Save";
-            this.saveToListButton.UseVisualStyleBackColor = true;
-            this.saveToListButton.Click += new System.EventHandler(this.saveToListButton_Click);
-            // 
-            // editTextLbl
-            // 
-            this.editTextLbl.AutoSize = true;
-            this.editTextLbl.Location = new System.Drawing.Point(88, 4);
-            this.editTextLbl.Name = "editTextLbl";
-            this.editTextLbl.Size = new System.Drawing.Size(99, 13);
-            this.editTextLbl.TabIndex = 4;
-            this.editTextLbl.Text = "edit your posts here";
             // 
             // listViewMessagesLbl
             // 
@@ -1040,15 +969,92 @@
             this.listViewMessagesLbl.TabIndex = 9;
             this.listViewMessagesLbl.Text = "Your custom Posts";
             // 
-            // customedPostbtn
+            // listBoxCustomPosts
             // 
-            this.customedPostbtn.Location = new System.Drawing.Point(672, 63);
-            this.customedPostbtn.Margin = new System.Windows.Forms.Padding(2);
-            this.customedPostbtn.Name = "customedPostbtn";
-            this.customedPostbtn.Size = new System.Drawing.Size(81, 33);
-            this.customedPostbtn.TabIndex = 21;
-            this.customedPostbtn.Text = "Custom Post";
-            this.customedPostbtn.UseVisualStyleBackColor = true;
+            this.listBoxCustomPosts.FormattingEnabled = true;
+            this.listBoxCustomPosts.Location = new System.Drawing.Point(14, 22);
+            this.listBoxCustomPosts.Name = "listBoxCustomPosts";
+            this.listBoxCustomPosts.Size = new System.Drawing.Size(316, 303);
+            this.listBoxCustomPosts.TabIndex = 8;
+            this.listBoxCustomPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxCustomPosts_SelectedIndexChanged);
+            // 
+            // editCustomPost
+            // 
+            this.editCustomPost.Location = new System.Drawing.Point(135, 349);
+            this.editCustomPost.Name = "editCustomPost";
+            this.editCustomPost.Size = new System.Drawing.Size(75, 23);
+            this.editCustomPost.TabIndex = 7;
+            this.editCustomPost.Text = "Edit";
+            this.editCustomPost.UseVisualStyleBackColor = true;
+            this.editCustomPost.Click += new System.EventHandler(this.editCustomPostButton_Click);
+            // 
+            // removeFromPostListBtn
+            // 
+            this.removeFromPostListBtn.Location = new System.Drawing.Point(14, 349);
+            this.removeFromPostListBtn.Name = "removeFromPostListBtn";
+            this.removeFromPostListBtn.Size = new System.Drawing.Size(72, 23);
+            this.removeFromPostListBtn.TabIndex = 4;
+            this.removeFromPostListBtn.Text = "Remove";
+            this.removeFromPostListBtn.UseVisualStyleBackColor = true;
+            this.removeFromPostListBtn.Click += new System.EventHandler(this.removeCustomPostButton_Click);
+            // 
+            // clearAllCustomPostBtn
+            // 
+            this.clearAllCustomPostBtn.Location = new System.Drawing.Point(259, 349);
+            this.clearAllCustomPostBtn.Name = "clearAllCustomPostBtn";
+            this.clearAllCustomPostBtn.Size = new System.Drawing.Size(72, 23);
+            this.clearAllCustomPostBtn.TabIndex = 5;
+            this.clearAllCustomPostBtn.Text = "Clear List";
+            this.clearAllCustomPostBtn.UseVisualStyleBackColor = true;
+            this.clearAllCustomPostBtn.Click += new System.EventHandler(this.removeAllCustomPostsButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.editTextLbl);
+            this.panel1.Controls.Add(this.customPostText);
+            this.panel1.Controls.Add(this.clearTextButton);
+            this.panel1.Controls.Add(this.saveCustomPostToListBtn);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(329, 315);
+            this.panel1.TabIndex = 6;
+            // 
+            // editTextLbl
+            // 
+            this.editTextLbl.AutoSize = true;
+            this.editTextLbl.Location = new System.Drawing.Point(88, 4);
+            this.editTextLbl.Name = "editTextLbl";
+            this.editTextLbl.Size = new System.Drawing.Size(99, 13);
+            this.editTextLbl.TabIndex = 4;
+            this.editTextLbl.Text = "edit your posts here";
+            // 
+            // customPostText
+            // 
+            this.customPostText.Location = new System.Drawing.Point(4, 26);
+            this.customPostText.Multiline = true;
+            this.customPostText.Name = "customPostText";
+            this.customPostText.Size = new System.Drawing.Size(310, 198);
+            this.customPostText.TabIndex = 3;
+            // 
+            // clearTextButton
+            // 
+            this.clearTextButton.Location = new System.Drawing.Point(210, 254);
+            this.clearTextButton.Name = "clearTextButton";
+            this.clearTextButton.Size = new System.Drawing.Size(104, 23);
+            this.clearTextButton.TabIndex = 2;
+            this.clearTextButton.Text = "Clear";
+            this.clearTextButton.UseVisualStyleBackColor = true;
+            this.clearTextButton.Click += new System.EventHandler(this.clearTextButton_Click);
+            // 
+            // saveCustomPostToListBtn
+            // 
+            this.saveCustomPostToListBtn.Location = new System.Drawing.Point(4, 254);
+            this.saveCustomPostToListBtn.Name = "saveCustomPostToListBtn";
+            this.saveCustomPostToListBtn.Size = new System.Drawing.Size(104, 23);
+            this.saveCustomPostToListBtn.TabIndex = 1;
+            this.saveCustomPostToListBtn.Text = "Save";
+            this.saveCustomPostToListBtn.UseVisualStyleBackColor = true;
+            this.saveCustomPostToListBtn.Click += new System.EventHandler(this.saveCustomPostButton_Click);
             // 
             // MainForm
             // 
@@ -1169,17 +1175,17 @@
         private System.Windows.Forms.TextBox textBoxSearchStock;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage customPostPage;
-        private System.Windows.Forms.Button clearAllMessagesButton;
-        private System.Windows.Forms.Button removeMessageButton;
+        private System.Windows.Forms.Button clearAllCustomPostBtn;
+        private System.Windows.Forms.Button removeFromPostListBtn;
         private System.Windows.Forms.Button clearTextButton;
-        private System.Windows.Forms.Button saveToListButton;
+        private System.Windows.Forms.Button saveCustomPostToListBtn;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox messageTextBox;
+        private System.Windows.Forms.TextBox customPostText;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button editMessageButton;
-        private System.Windows.Forms.ListBox listBoxMessages;
+        private System.Windows.Forms.Button editCustomPost;
+        private System.Windows.Forms.ListBox listBoxCustomPosts;
         private System.Windows.Forms.Label editTextLbl;
         private System.Windows.Forms.Label listViewMessagesLbl;
-        private System.Windows.Forms.Button customedPostbtn;
+        private System.Windows.Forms.Button chooseCustomedPostbtn;
     }
 }

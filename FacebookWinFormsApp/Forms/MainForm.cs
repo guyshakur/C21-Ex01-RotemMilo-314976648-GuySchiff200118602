@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using BasicFacebookFeatures.WeatherFeature;
 using BasicFacebookFeatures.FinanceFeature;
 using BasicFacebookFeatures.CostumText;
+using WPFCustomMessageBox;
+using System.Windows;
 
 namespace BasicFacebookFeatures
 {
@@ -27,7 +29,7 @@ namespace BasicFacebookFeatures
             r_LoggedUser = m_LoginUser;
             InitializeComponent();
             fetchLoginDetails();
-            fillMessagesListBoxFromFile();
+            fillCustomPostsBoxFromFile();
         }
 
         public User LoggedUser
@@ -49,7 +51,7 @@ namespace BasicFacebookFeatures
             }
             catch (Exception)
             {
-                MessageBox.Show("Can't fetch weather details");
+                System.Windows.MessageBox.Show("Can't fetch weather details");
             }
         }
 
@@ -107,7 +109,7 @@ namespace BasicFacebookFeatures
         {
 
             FacebookService.LogoutWithUI();
-            FormLoginPage formLoginPage = new FormLoginPage();
+            LoginPageForm formLoginPage = new LoginPageForm();
             formLoginPage.m_AppSettings.LastAcsessToken = "";
             formLoginPage.m_AppSettings.RememberUser = false;
             formLoginPage.m_AppSettings.SaveToFile();
@@ -143,7 +145,7 @@ namespace BasicFacebookFeatures
 
             if (r_LoggedUser.Posts.Count == 0)
             {
-                MessageBox.Show("No Posts to retrieve.");
+                System.Windows.MessageBox.Show("No Posts to retrieve.");
             }
         }
 
@@ -164,7 +166,7 @@ namespace BasicFacebookFeatures
             }
             else
             {
-                MessageBox.Show("Please fetch posts before");
+                System.Windows.MessageBox.Show("Please fetch posts before");
             }
         }
 
@@ -194,7 +196,7 @@ namespace BasicFacebookFeatures
             }
             else if (listBoxPosts.Items.Count == 0)
             {
-                MessageBox.Show("Please fetch posts before");
+                System.Windows.MessageBox.Show("Please fetch posts before");
             }
             else
             {
@@ -245,7 +247,7 @@ namespace BasicFacebookFeatures
             }
             if (listBoxAlbums.Items.Count == 0)
             {
-                MessageBox.Show("No Albums to retrieve :(");
+                System.Windows.MessageBox.Show("No Albums to retrieve :(");
             }
         }
 
@@ -288,12 +290,12 @@ namespace BasicFacebookFeatures
 
                 if (r_LoggedUser.Events.Count == 0)
                 {
-                    MessageBox.Show("No Events to retrieve.");
+                    System.Windows.MessageBox.Show("No Events to retrieve.");
                 }
             }
             catch (FacebookOAuthException)
             {
-                MessageBox.Show("Authentication error. Cannot fetch events for current user from Facebook.");
+                System.Windows.MessageBox.Show("Authentication error. Cannot fetch events for current user from Facebook.");
             }
         }
 
@@ -317,7 +319,7 @@ namespace BasicFacebookFeatures
             }
             catch (Exception)
             {
-                MessageBox.Show("problem has been deteced with liking post. Contact FaceBook administrator.");
+                System.Windows.MessageBox.Show("problem has been deteced with liking post. Contact FaceBook administrator.");
             }
         }
 
@@ -331,11 +333,11 @@ namespace BasicFacebookFeatures
             try
             {
                 r_LoggedUser.PostStatus(textBoxPost.Text);
-                MessageBox.Show("Your post shared sucessfully");
+                System.Windows.MessageBox.Show("Your post shared sucessfully");
             }
             catch (Exception)
             {
-                MessageBox.Show("Your post can't be shared. Please contact facebook administrator ");
+                System.Windows.MessageBox.Show("Your post can't be shared. Please contact facebook administrator ");
             }
             finally
             {
@@ -362,14 +364,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void listBoxMatchFriends_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            fetchFriendsDetails(sender as User);
-        }
-
-
-
-
 
         private void buttonFetchWeatherDetails_Click(object sender, EventArgs e)
         {
@@ -379,7 +373,7 @@ namespace BasicFacebookFeatures
             }
             catch (Exception)
             {
-                MessageBox.Show("Can't fetch weather details");
+                System.Windows.MessageBox.Show("Can't fetch weather details");
             }
         }
 
@@ -395,38 +389,38 @@ namespace BasicFacebookFeatures
             }
             catch
             {
-                MessageBox.Show("Invalid Stock Name");
+                System.Windows.MessageBox.Show("Invalid Stock Name");
             }
         }
 
-        private void saveToListButton_Click(object sender, EventArgs e)
+        private void saveCustomPostButton_Click(object sender, EventArgs e)
         {
             
-            if (!String.IsNullOrEmpty(messageTextBox.Text))
+            if (!String.IsNullOrEmpty(customPostText.Text))
             {
-                m_customText.createMessageAndAddToList(messageTextBox.Text);
-                listBoxMessages.Items.Add(m_customText.Messages.ElementAt(m_customText.Messages.Count-1));
+                m_customText.createMessageAndAddToList(customPostText.Text);
+                listBoxCustomPosts.Items.Add(m_customText.m_TextMessage.ElementAt(m_customText.m_TextMessage.Count-1));
                 m_customText.SaveToFile();
-                messageTextBox.Clear();
+                customPostText.Clear();
             }
         }
 
         private void clearTextButton_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(messageTextBox.Text))
+            if(!String.IsNullOrEmpty(customPostText.Text))
             {
-                messageTextBox.Clear();
+                customPostText.Clear();
             }
             
         }
 
-        private void clearAllMessagesButton_Click(object sender, EventArgs e)
+        private void removeAllCustomPostsButton_Click(object sender, EventArgs e)
         {
             if (m_customText != null)
             {
-                if(m_customText.Messages.Count!=0&&listBoxMessages!=null)
+                if(m_customText.m_TextMessage.Count!=0&&listBoxCustomPosts!=null)
                 {
-                    listBoxMessages.Items.Clear();
+                    listBoxCustomPosts.Items.Clear();
                     m_customText.ClearMessages();
                     m_customText.SaveToFile();
                     
@@ -435,15 +429,15 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void removeMessageButton_Click(object sender, EventArgs e)
+        private void removeCustomPostButton_Click(object sender, EventArgs e)
         {
             if(m_customText!=null)
             {
                 
-                if (m_customText.Messages.Count != 0&&listBoxMessages.SelectedItem!=null)
+                if (m_customText.m_TextMessage.Count != 0&&listBoxCustomPosts.SelectedItem!=null)
                 {
-                    m_customText.RemoveMessageFromList(listBoxMessages.SelectedIndex);
-                    listBoxMessages.Items.Remove(listBoxMessages.SelectedItem);
+                    m_customText.RemoveMessageFromList(listBoxCustomPosts.SelectedIndex);
+                    listBoxCustomPosts.Items.Remove(listBoxCustomPosts.SelectedItem);
                     m_customText.SaveToFile();
 
                 }
@@ -451,15 +445,16 @@ namespace BasicFacebookFeatures
            
         }
         
-        private void fillMessagesListBoxFromFile()
+        private void fillCustomPostsBoxFromFile()
         {
             m_customText = CustomText.CustomTextInstance;
             try
             {
                 m_customText = CustomText.LoadFile();
-                foreach(string message in m_customText.Messages)
+                
+                foreach (string message in m_customText.m_TextMessage)
                 {
-                    listBoxMessages.Items.Add(message);
+                   listBoxCustomPosts.Items.Add(message);
                 }
 
             }
@@ -471,23 +466,71 @@ namespace BasicFacebookFeatures
 
         }
 
-        private void editMessageButton_Click(object sender, EventArgs e)
+        private void editCustomPostButton_Click(object sender, EventArgs e)
         {
-            if(m_customText!=null)
+            editPost();
+            
+        }
+
+        private void editPost()
+        {
+            if (m_customText != null)
             {
-                if (m_customText.Messages.Count != 0 && listBoxMessages.SelectedItem != null)
+                if (m_customText.m_TextMessage.Count != 0 && listBoxCustomPosts.SelectedItem != null)
                 {
-                    int index = listBoxMessages.SelectedIndex;
-                    messageTextBox.Text = listBoxMessages.SelectedItem.ToString();
-                    messageTextBox.Focus();
+                    int index = listBoxCustomPosts.SelectedIndex;
+                    customPostText.Text = listBoxCustomPosts.SelectedItem.ToString();
+                    customPostText.Focus();
                     m_customText.RemoveMessageFromList(index);
-                    listBoxMessages.Items.RemoveAt(index);
+                    listBoxCustomPosts.Items.RemoveAt(index);
                     m_customText.SaveToFile();
 
 
                 }
             }
+        }
+
+        private void buttonFetchFriends_Click(object sender, EventArgs e)
+        {
+            if(r_LoggedUser.Friends!=null)
+            {
+                foreach (User user in r_LoggedUser.Friends)
+                {
+                    listBoxFriends.Items.Add(user);
+                }
+            }
             
+        }
+
+        private void listBoxCustomPosts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if(listBoxCustomPosts!=null&&listBoxCustomPosts.SelectedItem!=null)
+            {
+                string post = listBoxCustomPosts.SelectedItem.ToString();
+                if (CustomMessageBox.ShowOKCancel(post, "Custom Post", "edit Template", "Use template to post") == MessageBoxResult.OK)
+                {
+                    editPost();
+                    //customPostText.Text = post;
+                   // customPostText.Focus();
+                    listBoxCustomPosts.ClearSelected();
+                }
+                else 
+                {
+                    this.tabControl.SelectedTab = tabPageProfile;
+                    this.textBoxPost.Text = post;
+                    listBoxCustomPosts.ClearSelected();
+                }
+                
+
+            }
+            
+
+        }
+
+        private void chooseCustomedPostbtn_Click(object sender, EventArgs e)
+        {
+            this.tabControl.SelectedTab = customPostPage;
         }
     }
     

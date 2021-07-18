@@ -26,7 +26,7 @@ namespace BasicFacebookFeatures
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            FormLoginPage formLoginPage = new FormLoginPage();
+            LoginPageForm formLoginPage = new LoginPageForm();
             try
             {
                 formLoginPage.m_AppSettings = AppSettings.LoadFile();

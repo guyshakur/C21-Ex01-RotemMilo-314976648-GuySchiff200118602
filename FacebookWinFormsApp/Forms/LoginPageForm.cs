@@ -16,13 +16,13 @@ namespace BasicFacebookFeatures
 {
     
 
-    public partial class FormLoginPage : Form
+    public partial class LoginPageForm : Form
     {
         public AppSettings m_AppSettings { get; set; }
         private FacebookWrapper.ObjectModel.User m_LoginUser;
         public LoginResult m_LoginResult { get; set; }
 
-        public FormLoginPage()
+        public LoginPageForm()
         {
             m_AppSettings = AppSettings.AppSettingsInstance;
             InitializeComponent();

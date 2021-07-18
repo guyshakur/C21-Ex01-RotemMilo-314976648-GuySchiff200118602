@@ -8,14 +8,14 @@ namespace BasicFacebookFeatures.CostumText
 {
     public class CustomText
     {
-        public List<string> Messages { get; set; }
+        public List<string> m_TextMessage { get; set; }
         private static readonly string r_fileName = "CustomMessages.txt";
         private static readonly CustomText sr_customText = new CustomText();
 
 
         private CustomText()
         {
-            Messages = new List<string>();
+            m_TextMessage = new List<string>();
         }
 
         public static CustomText CustomTextInstance
@@ -32,19 +32,20 @@ namespace BasicFacebookFeatures.CostumText
             {
                 throw new Exception("can't create empty message");
             }
-            Messages.Add(i_message);
+            m_TextMessage.Add(i_message);
+            
         }
 
         public void ClearMessages()
         {
            
-                Messages.Clear();
+            m_TextMessage.Clear();
             
         }
 
         public void RemoveMessageFromList(int i_index)
         {
-            Messages.RemoveAt(i_index);
+            m_TextMessage.RemoveAt(i_index);
         }
 
         public void SaveToFile()
