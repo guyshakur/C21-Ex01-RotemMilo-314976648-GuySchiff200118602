@@ -12,18 +12,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BasicFacebookFeatures.WeatherFeature;
 using BasicFacebookFeatures.FinanceFeature;
+using BasicFacebookFeatures.CostumText;
 
 namespace BasicFacebookFeatures
 {
     public partial class MainForm : Form
     {
+        public CustomText m_customText { get; set;}
         private readonly FacebookWrapper.ObjectModel.User r_LoggedUser;
         private readonly List<object> r_LastPostsCollection = new List<object>();
         public MainForm(FacebookWrapper.ObjectModel.User m_LoginUser)
         {
+            
             r_LoggedUser = m_LoginUser;
             InitializeComponent();
             fetchLoginDetails();
+            fillMessagesListBoxFromFile();
         }
 
         public User LoggedUser
@@ -39,11 +43,11 @@ namespace BasicFacebookFeatures
             pictureBoxProfile.ImageLocation = r_LoggedUser.PictureLargeURL;
             this.Text = $"{r_LoggedUser.FirstName} {r_LoggedUser.LastName}";
             fetchSelfDetails();
-            try 
+            try
             {
                 fetchWeatherDetails(r_LoggedUser.Location.Name);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Can't fetch weather details");
             }
@@ -51,7 +55,7 @@ namespace BasicFacebookFeatures
 
         private void fetchWeatherDetails(string i_CityLocation)
         {
-            
+
             WeatherDetails weatherDetails = WeatherFeature.WeatherFeature.GetWeatherDetails(i_CityLocation);
             labelCountry.Text = $"Country: {weatherDetails.Location.Country}";
             labelCountry.Visible = true;
@@ -65,7 +69,7 @@ namespace BasicFacebookFeatures
             labelTemperatureInCelcius.Visible = true;
             labelTemperatureInFahrnheit.Text = $"Temperture in Fahrenheit: {weatherDetails.Current.Temp_F}";
             labelTemperatureInFahrnheit.Visible = true;
-            pictureBoxWeatherPredict.ImageLocation = "Http:"+weatherDetails.Current.Condition.Icon;
+            pictureBoxWeatherPredict.ImageLocation = "Http:" + weatherDetails.Current.Condition.Icon;
             pictureBoxWeatherPredict.Visible = true;
             buttonFetchWeatherDetails.Visible = true;
             labelWeatherDetails.Visible = true;
@@ -96,9 +100,9 @@ namespace BasicFacebookFeatures
             }
 
         }
-        
-        
-        
+
+
+
         private void logOutButton_Click(object sender, EventArgs e)
         {
 
@@ -106,7 +110,7 @@ namespace BasicFacebookFeatures
             FormLoginPage formLoginPage = new FormLoginPage();
             formLoginPage.m_AppSettings.LastAcsessToken = "";
             formLoginPage.m_AppSettings.RememberUser = false;
-            AppSettings.SaveToFile();
+            formLoginPage.m_AppSettings.SaveToFile();
             Hide();
             formLoginPage.ShowDialog();
             formLoginPage.m_LoginResult = null;
@@ -115,7 +119,7 @@ namespace BasicFacebookFeatures
 
         private void buttonLikedPages_Click(object sender, EventArgs e)
         {
-            fetchLikedPages();    
+            fetchLikedPages();
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
@@ -142,7 +146,7 @@ namespace BasicFacebookFeatures
                 MessageBox.Show("No Posts to retrieve.");
             }
         }
-        
+
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             searchInPost(listBoxPosts.Text);
@@ -214,17 +218,17 @@ namespace BasicFacebookFeatures
             if (listBoxPhotos.SelectedItem != null)
             {
                 Photo selectedPhoto = listBoxPhotos.SelectedItem as Photo;
-                if(selectedPhoto!=null)
+                if (selectedPhoto != null)
                 {
                     pictureBoxPhoto.ImageLocation = selectedPhoto.PictureNormalURL;
                     pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
                     listBoxPhotosComments.DataSource = selectedPhoto.Comments;
                 }
-                
+
             }
         }
 
-        
+
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
@@ -256,9 +260,10 @@ namespace BasicFacebookFeatures
                 foreach (Photo photo in albumSelected.Photos)
                 {
                     listBoxPhotos.Items.Add(photo);
+                    
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
             }
@@ -280,7 +285,7 @@ namespace BasicFacebookFeatures
                 {
                     listBoxEvents.Items.Add(userEvent);
                 }
-                
+
                 if (r_LoggedUser.Events.Count == 0)
                 {
                     MessageBox.Show("No Events to retrieve.");
@@ -339,42 +344,6 @@ namespace BasicFacebookFeatures
         }
 
 
-        private void buttonMatch_Click(object sender, EventArgs e)
-        {
-            if(listBoxMatchFriends.SelectedItem!=null)
-            {
-                DatingFeature.Match(r_LoggedUser, listBoxMatchFriends.SelectedItem as User);
-            }
-        }
-
-
-        private void buttonFetchFriends_Click(object sender, EventArgs e)
-        {
-            listBoxFriends.Items.Clear();
-            listBoxMatchFriends.Items.Clear();
-            listBoxFriends.DisplayMember = "Name";
-
-            try
-            {
-                foreach (User friend in r_LoggedUser.Friends)
-                {
-                    listBoxFriends.Items.Add(friend);
-                    listBoxMatchFriends.Items.Add(friend);
-                }
-
-                if (r_LoggedUser.Friends.Count == 0)
-                {
-                    MessageBox.Show("No friends to retrieve.");
-                    //listBoxFriends.Items.Add(r_LoggedUser);
-                    //listBoxMatchFriends.Items.Add(r_LoggedUser);
-                }
-            }
-            catch (FacebookOAuthException)
-            {
-                MessageBox.Show("Authentication error. Cannot fetch friends for current user from Facebook.");
-            }
-        }
-
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
             User friend = listBoxFriends.SelectedItem as User;
@@ -382,7 +351,7 @@ namespace BasicFacebookFeatures
         }
         private void fetchFriendsDetails(User i_Friend)
         {
-            if(i_Friend!=null)
+            if (i_Friend != null)
             {
                 labelFriendFirstName.Text = $"First Name: {i_Friend.FirstName}";
                 labelFriendLastName.Text = $"Last Name: {i_Friend.LastName}";
@@ -398,19 +367,9 @@ namespace BasicFacebookFeatures
             fetchFriendsDetails(sender as User);
         }
 
-        private void buttonFindMatches_Click(object sender, EventArgs e)
-        {
-            List<User> matchesList = DatingFeature.FindMatches(r_LoggedUser);
-            if(matchesList != null)
-            {
-                listBoxFindMatches.DataSource = matchesList;
-            }
-        }
 
-        private void listBoxFindMatches_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            fetchFriendsDetails(listBoxFindMatches.SelectedItem as User);
-        }
+
+
 
         private void buttonFetchWeatherDetails_Click(object sender, EventArgs e)
         {
@@ -439,6 +398,98 @@ namespace BasicFacebookFeatures
                 MessageBox.Show("Invalid Stock Name");
             }
         }
+
+        private void saveToListButton_Click(object sender, EventArgs e)
+        {
+            
+            if (!String.IsNullOrEmpty(messageTextBox.Text))
+            {
+                m_customText.createMessageAndAddToList(messageTextBox.Text);
+                listBoxMessages.Items.Add(m_customText.Messages.ElementAt(m_customText.Messages.Count-1));
+                m_customText.SaveToFile();
+                messageTextBox.Clear();
+            }
+        }
+
+        private void clearTextButton_Click(object sender, EventArgs e)
+        {
+            if(!String.IsNullOrEmpty(messageTextBox.Text))
+            {
+                messageTextBox.Clear();
+            }
+            
+        }
+
+        private void clearAllMessagesButton_Click(object sender, EventArgs e)
+        {
+            if (m_customText != null)
+            {
+                if(m_customText.Messages.Count!=0&&listBoxMessages!=null)
+                {
+                    listBoxMessages.Items.Clear();
+                    m_customText.ClearMessages();
+                    m_customText.SaveToFile();
+                    
+                }
+                
+            }
+        }
+
+        private void removeMessageButton_Click(object sender, EventArgs e)
+        {
+            if(m_customText!=null)
+            {
+                
+                if (m_customText.Messages.Count != 0&&listBoxMessages.SelectedItem!=null)
+                {
+                    m_customText.RemoveMessageFromList(listBoxMessages.SelectedIndex);
+                    listBoxMessages.Items.Remove(listBoxMessages.SelectedItem);
+                    m_customText.SaveToFile();
+
+                }
+            }
+           
+        }
+        
+        private void fillMessagesListBoxFromFile()
+        {
+            m_customText = CustomText.CustomTextInstance;
+            try
+            {
+                m_customText = CustomText.LoadFile();
+                foreach(string message in m_customText.Messages)
+                {
+                    listBoxMessages.Items.Add(message);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                m_customText.SaveToFile();
+            }
+
+
+        }
+
+        private void editMessageButton_Click(object sender, EventArgs e)
+        {
+            if(m_customText!=null)
+            {
+                if (m_customText.Messages.Count != 0 && listBoxMessages.SelectedItem != null)
+                {
+                    int index = listBoxMessages.SelectedIndex;
+                    messageTextBox.Text = listBoxMessages.SelectedItem.ToString();
+                    messageTextBox.Focus();
+                    m_customText.RemoveMessageFromList(index);
+                    listBoxMessages.Items.RemoveAt(index);
+                    m_customText.SaveToFile();
+
+
+                }
+            }
+            
+        }
     }
+    
 }
 

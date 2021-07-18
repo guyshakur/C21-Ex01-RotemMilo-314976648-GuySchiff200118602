@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
 <AppSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <RememberUser>false</RememberUser>
+  <RememberUser>true</RememberUser>
+  <LastAcsessToken>EAADN75vdm5IBAPFmaXTvApxOCkgnoL7h4UNHnzs7n1WtTZB9gJi3ANlgV4QDDnncGettAM0dTG2yZA6NvuAEhvXWknfW0JNpYn1ZCdCXUZAg503Oeq8CQ6oOtFh1kMhz8PfK07bdIxhVXFrgVUTZC0suPGJupvJ7RleoPYWNGdpusIMUFpeeo</LastAcsessToken>
 </AppSettings>

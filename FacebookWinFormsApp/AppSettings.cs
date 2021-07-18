@@ -36,9 +36,9 @@ namespace BasicFacebookFeatures
 
         }
 
-        public static void SaveToFile()
+        public void SaveToFile()
         {
-            FileUtils.SaveToFile(AppSettings.FileName, sr_AppSettings);
+            FileUtils.SaveToFile(AppSettings.FileName, this);
         }
 
         public static AppSettings LoadFile()

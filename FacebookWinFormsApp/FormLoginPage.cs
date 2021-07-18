@@ -39,7 +39,7 @@ namespace BasicFacebookFeatures
                 m_AppSettings.LastAcsessToken = m_LoginResult.AccessToken;
             }
             m_AppSettings.RememberUser = rememberMeChecked.Checked;
-            AppSettings.SaveToFile();
+            m_AppSettings.SaveToFile();
             
             if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
             {
