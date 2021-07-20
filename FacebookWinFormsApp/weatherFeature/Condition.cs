@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures.WeatherFeature
 {
@@ -19,6 +14,7 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_PredictText;
             }
+
             set
             {
                 m_PredictText = value;
@@ -32,11 +28,11 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_PredictIcon;
             }
+
             set
             {
                 m_PredictIcon = value;
             }
         }
     }
-    
 }

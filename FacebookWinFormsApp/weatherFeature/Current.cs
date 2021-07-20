@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures.WeatherFeature
 {
@@ -20,11 +15,13 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_TempertureInCelsius;
             }
+
             set
             {
                 m_TempertureInCelsius = value;
             }
         }
+
         [JsonProperty("Temp_F")]
         public double TempertureInFahrenheit
         {
@@ -32,6 +29,7 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_TempertureInFahrenheit;
             }
+
             set
             {
                 m_TempertureInFahrenheit = value;
@@ -45,11 +43,11 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_Condition;
             }
+
             set
             {
                 m_Condition = value;
             }
         }
-
     }
 }

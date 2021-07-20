@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures.WeatherFeature
 {
@@ -20,11 +15,13 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_CityName;
             }
+
             set
             {
                 m_CityName = value;
             }
         }
+
         [JsonProperty("Country")]
         public string Country
         {
@@ -32,11 +29,13 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_Country;
             }
+
             set
             {
                 m_Country = value;
             }
         }
+
         [JsonProperty("LocalTime")]
         public string LocalTime
         {
@@ -44,11 +43,11 @@ namespace BasicFacebookFeatures.WeatherFeature
             {
                 return m_LocalTime;
             }
+
             set
             {
                 m_LocalTime = value;
             }
         }
-
     }
 }

@@ -19,6 +19,7 @@ namespace BasicFacebookFeatures
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -106,4 +107,3 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Label labelLogin;
     }
 }
-

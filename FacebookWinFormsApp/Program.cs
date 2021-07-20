@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using Facebook;
 using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
-    static class Program
+    public static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             StartBasicFeatureFacebookApp();
         }
@@ -29,35 +22,29 @@ namespace BasicFacebookFeatures
             LoginPageForm formLoginPage = new LoginPageForm();
             try
             {
-                formLoginPage.m_AppSettings = AppSettings.LoadFile();
-                if (!String.IsNullOrEmpty(formLoginPage.m_AppSettings.LastAcsessToken) && formLoginPage.m_AppSettings.RememberUser)
+                formLoginPage.AppSettings = AppSettings.LoadFile();
+                if (!string.IsNullOrEmpty(formLoginPage.AppSettings.LastAcsessToken) && formLoginPage.AppSettings.RememberUser)
                 {
                     try
                     {
-                        LoginResult loginResult = FacebookService.Connect(formLoginPage.m_AppSettings.LastAcsessToken);
+                        LoginResult loginResult = FacebookService.Connect(formLoginPage.AppSettings.LastAcsessToken);
                         MainForm mainForm = new MainForm(loginResult.LoggedInUser);
                         mainForm.ShowDialog();
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
                         formLoginPage.ShowDialog();
                     }
-
-                    
                 }
                 else
                 {
                     formLoginPage.ShowDialog();
                 }
-                
-                
             }
-            catch(Exception)
+            catch (Exception)
             {
                 formLoginPage.ShowDialog();
             }
-            
         }
     }
-    
 }
