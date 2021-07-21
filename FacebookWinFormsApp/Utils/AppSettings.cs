@@ -20,7 +20,7 @@ namespace BasicFacebookFeatures
 
         public static AppSettings LoadFile()
         {
-            return FileUtils.LoadFile(AppSettings.FileName, sr_AppSettings) as AppSettings;
+            return XmlFileUtils.LoadFile(AppSettings.FileName, sr_AppSettings) as AppSettings;
         }
 
         public bool RememberUser
@@ -67,7 +67,7 @@ namespace BasicFacebookFeatures
 
         public void SaveToFile()
         {
-            FileUtils.SaveToFile(AppSettings.FileName, this);
+            XmlFileUtils.SaveToFile(AppSettings.FileName, this);
         }
     }
 }

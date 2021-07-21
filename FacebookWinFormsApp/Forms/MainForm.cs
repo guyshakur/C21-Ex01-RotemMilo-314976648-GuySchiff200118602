@@ -274,8 +274,8 @@ namespace BasicFacebookFeatures
 
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBoxPhotos.Items.Clear();
-            listBoxPhotos.DisplayMember = "Name";
+            listBoxPhotos.Items.Clear();       
+            listBoxPhotos.DisplayMember = "CreatedTime.ToString()";
             Album albumSelected = listBoxAlbums.SelectedItem as Album;
 
             try
@@ -509,7 +509,7 @@ namespace BasicFacebookFeatures
                 }
                 else if (result == MessageBoxResult.Cancel)
                 {
-                    this.tabControl.SelectedTab = tabPageProfile;
+                    this.tabControl.SelectedTab = tabProfile;
                     this.textBoxPost.Text = post;
                     listBoxCustomPosts.ClearSelected();
                 }
@@ -518,7 +518,7 @@ namespace BasicFacebookFeatures
 
         private void buttonChooseCustomedPost_Click(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = tabPageCustomPostPage;
+            tabControl.SelectedTab = tabCustomPost;
         }
 
         private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)

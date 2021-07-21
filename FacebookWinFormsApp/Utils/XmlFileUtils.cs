@@ -3,19 +3,19 @@ using System.Xml.Serialization;
 
 namespace BasicFacebookFeatures
 {
-    public sealed class FileUtils
+    public sealed class XmlFileUtils
     {
-        private static readonly FileUtils r_FileUtilsInstance = new FileUtils();
+        private static readonly XmlFileUtils r_FileUtilsInstance = new XmlFileUtils();
 
-        static FileUtils()
+        static XmlFileUtils()
         {
         }
 
-        private FileUtils()
+        private XmlFileUtils()
         {
         }
 
-        public static FileUtils FileUtilsInstance
+        public static XmlFileUtils FileUtilsInstance
         {
             get
             {

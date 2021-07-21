@@ -16,7 +16,7 @@ namespace BasicFacebookFeatures.CostumText
 
         public static CustomText LoadFile()
         {
-            return FileUtils.LoadFile(CustomText.sr_FileName, sr_CustomText) as CustomText;
+            return XmlFileUtils.LoadFile(CustomText.sr_FileName, sr_CustomText) as CustomText;
         }
 
         public static CustomText CustomTextInstance
@@ -49,7 +49,7 @@ namespace BasicFacebookFeatures.CostumText
 
         public void SaveToFile()
         {
-            FileUtils.SaveToFile(CustomText.sr_FileName, this);
+            XmlFileUtils.SaveToFile(CustomText.sr_FileName, this);
         }
 
         public List<string> TextMessage

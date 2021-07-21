@@ -101,15 +101,9 @@
   <ItemGroup>
     <Compile Include="Utils\AppSettings.cs" />
     <Compile Include="CustomTextFeature\CustomText.cs" />
-    <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="Utils\XmlFileUtils.cs" />
     <Compile Include="FinanceFeature\FinanceFeature.cs" />
     <Compile Include="FinanceFeature\Stock.cs" />
-    <Compile Include="Forms\ChooseCustomPostForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ChooseCustomPostForm.Designer.cs">
-      <DependentUpon>ChooseCustomPostForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

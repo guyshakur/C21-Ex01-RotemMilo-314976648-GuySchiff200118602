@@ -59,7 +59,8 @@ namespace BasicFacebookFeatures
                     "user_events",
                     "user_birthday",
                     "user_location",
-                    "user_gender");
+                    "user_gender",
+                    "groups_access_member_info");
 
             return m_LoginResult;
         }
